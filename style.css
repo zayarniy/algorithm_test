@@ -1,0 +1,24 @@
+#progress-bar {
+    width: 100%;
+    display: inline;
+    #flex-basis: auto;
+    #flex-grow: 1;
+    #flex-shrink: 0;
+    #border: 1px solid #0F0;
+    height: 45px;
+    #background-color: ;
+    #display: flex;
+    #align-items: center;
+}
+
+#progress-bar-fill {
+    #border: 1px solid #FF0000;
+    height: 20px;
+    background-color: #ffffff;
+    #transition: width 1s linear;
+    width: 0%;
+    position: relative;
+    #top: 15px;
+    margin-top: 10px;
+
+}

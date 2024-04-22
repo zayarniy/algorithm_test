@@ -18,29 +18,40 @@
 
         <head class="row justify-content-center">
             <h2>Анализ блок-схем</h2>
+            <p>Проанализируйте алгоритм и заполните таблицу трассировки. <strong style="color: green;">+</strong> -
+                условие истино,
+                <strong style="color: green;">-</strong> -
+                условие ложно
+            </p>
         </head>
 
         <div class="row">
-            <div class="col-6">
-                <img src="algorithms/001.png" width="90%">
+            <div class="col-12">
+                <p>Проанализируйте алгоритм и скажите чему будет равняться переменная m при m=<span id="initM"></span>,
+                    n=<span id="initN"></span></span></p>
             </div>
             <div class="col-6">
-                <table border="1" class="table" id="mainTable">
-                    <!-- <tr>
+                <img src="algorithms/001.png" width="100%">
+            </div>
+            <div class="col-6">
+                <table style="border: 2px solid black;" class="table text-center" id="traceTable">
+                </table>
+                <!--
+                <p>Вывод на экран</p>
+                <table id="outputTable">
+                    <tr>
                         <th>m</th>
-                        <th>n</th>
-                        <th>m!=n</th>
-                        <th>m>n</th>
                     </tr>
                     <tr>
                         <td><input id="c1" style="width: 40px;" type='text'></td>
-                        <td><input id="c2" style="width: 40px;" type='text'></td>
-                        <td><input id="c3" style="width: 40px;" type='text'></td>
-                        <td><input id="c4" style="width: 40px;" type='text'></td>
-                        <td><button id='addRow' class="primary">Добавить</button> </td>
-                    </tr>-->
+                    </tr>
                 </table>
-                <button id='check'>Проверить</button>
+-->
+                <button id='check' onclick="check()">Проверить</button>
+                <p id="countDown"></p>
+                <div id="progress-bar" style="border:0px solid black;">
+                    <div id="progress-bar-fill"></div>
+                </div>
             </div>
         </div>
     </div>
