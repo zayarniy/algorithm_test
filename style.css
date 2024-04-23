@@ -1,5 +1,5 @@
 #progress-bar {
-    width: 100%;
+    width: 90%;
     display: inline;
     #flex-basis: auto;
     #flex-grow: 1;
@@ -20,5 +20,50 @@
     position: relative;
     #top: 15px;
     margin-top: 10px;
+
+}
+
+.nav_panel {
+    position: absolute;
+    box-sizing: content-box;
+    left: 10px;
+    bottom: 10px;
+    #width: 70%;
+    margin: 10px;
+    padding: 0px;
+    min-width: 500px;
+    max-width: 80%;
+    height: 45px;
+    background-color: cornflowerblue;
+    border: 1px solid black;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+
+    #align-content: flex-end;
+    #align-items: center;
+}
+
+.right {
+    #border: 1px solid #000;
+    align-content: flex-end;
+    align-items: flex-end;
+    #padding: -10px;
+    #margin: -1px;
+    height: 38px;
+    flex-basis: auto;
+    flex-shrink: 1;
+    flex-grow: 1;
+}
+
+.my_btn {
+    #border: 1px solid #000;
+    height: 40px;
+    #white-space: wrap;
+    width: 150px;
+    margin: 3px;
+
 
 }
