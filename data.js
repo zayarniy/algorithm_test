@@ -10,6 +10,7 @@ let tasks =
                 data[0][2] = 'm!=n'
                 data[0][3] = 'm>n'
                 let i = 1;
+                let count = 0;
                 while (m != n) {
                     data.push([])
                     data[i][0] = m;
@@ -18,6 +19,7 @@ let tasks =
                     data[i][3] = m > n ? '+' : '-';
                     if (m > n) m = m - n; else n = n - m;
                     i++;
+                    count += 4;
                 }
                 //Вывод
                 data.push([])
@@ -26,8 +28,10 @@ let tasks =
                 data[i][2] = m != n ? '+' : '-';
                 data[i][3] = m > n ? '+' : '-';
                 if (m > n) m = m - n; else n = n - m;
+                count += 4;
                 data.outputText = 'm';
                 data.output = m;
+                scoreMax = count;
             },
             init: function () {
                 data = [[]]
@@ -65,6 +69,7 @@ let tasks =
                 //score = (count == countGreen ? countGreen : 0);
                 score = countGreen;
                 errorsTotal += countRed;
+
                 infoUpdate();
 
             }

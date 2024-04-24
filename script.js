@@ -3,13 +3,17 @@ let si = null;
 let scoreTotal = 0;
 let errorsTotal = 0;
 let taskNumber = 0;
+let scoreMax = 0;
 
 function init() {
-    if (si != null) clearInterval(si);
-    tasks[0].init();
     taskNumber++;
+    scoreTotal += score;
+    score = 0;
+    tasks[0].init();
+    infoUpdate();
+    if (si != null) clearInterval(si);
     createTable();
-    startCountdown(100);
+    //startCountdown(100);
     document.getElementById('btnCheck').addEventListener('click', () => {
         tasks[0].check();
     });
@@ -20,6 +24,7 @@ function infoUpdate() {
     document.getElementById('scoresTotal').textContent = scoreTotal;
     document.getElementById('errorsTotal').textContent = errorsTotal;
     document.getElementById('taskNumber').textContent = taskNumber;
+    document.getElementById('scoreMax').textContent = scoreMax;
 
 }
 
