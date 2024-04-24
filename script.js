@@ -4,19 +4,26 @@ let scoreTotal = 0;
 let errorsTotal = 0;
 let taskNumber = 0;
 let scoreMax = 0;
+let currentTask;
 
 function init() {
+    currentTask = taskQuery[taskNumber];
     taskNumber++;
     scoreTotal += score;
     score = 0;
-    tasks[0].init();
-    infoUpdate();
-    if (si != null) clearInterval(si);
-    createTable();
+    tasks[currentTask].init();
+    //if (si != null) clearInterval(si);
     //startCountdown(100);
+    infoUpdate();
+    createTable();
+
     document.getElementById('btnCheck').addEventListener('click', () => {
-        tasks[0].check();
+        tasks[currentTask].check();
     });
+}
+
+function next() {
+    init();
 }
 
 function infoUpdate() {
@@ -66,6 +73,3 @@ function startCountdown(countDown) {
     }
 }
 
-function next() {
-    init();
-}
