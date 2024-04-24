@@ -1,44 +1,33 @@
 let score = 0;
 let si = null;
+let scoreTotal = 0;
+let errorsTotal = 0;
+let taskNumber = 0;
 
 function init() {
     if (si != null) clearInterval(si);
     tasks[0].init();
+    taskNumber++;
     createTable();
     startCountdown(100);
+    document.getElementById('btnCheck').addEventListener('click', () => {
+        tasks[0].check();
+    });
+}
+
+function infoUpdate() {
+    document.getElementById('scores').textContent = score;
+    document.getElementById('scoresTotal').textContent = scoreTotal;
+    document.getElementById('errorsTotal').textContent = errorsTotal;
+    document.getElementById('taskNumber').textContent = taskNumber;
+
 }
 
 
 
 
 
-function check(showAnswers = false) {
-    let countRed = 0;
-    let countGreen = 0;
-    let count = 0;
-    for (i = 1; i < data.length; i++) {
-        for (j = 0; j < data[i].length; j++) {
-            let el = document.getElementById(i + "" + j);
-            if (showAnswers) el.value = data[i][j];
-            else {
-                count++;
-                if (el.value != '')
-                    if (data[i][j] == el.value) {
-                        el.style.color = 'green';
-                        countGreen++;
-                    }
-                    else {
-                        el.style.color = 'red';
-                        countRed++;
-                    }
-            }
-        }
 
-        score += (count == countGreen ? countGreen : 0);
-        document.getElementById('scores').textContent = score;
-    }
-
-}
 
 
 
@@ -62,8 +51,9 @@ function startCountdown(countDown) {
                 countDown = 0;
                 pbf.style.width = countDown + "%";
                 cd.textContent = countDown;
-                check(true);
-                document.getElementById('btnNext').style.visibility = 'visible';
+                tasks[0].check(true);
+                //document.getElementById('btnNext').style.visibility = 'visible';
+                //document.getElementById('btnCheck').style.disabled = 'disabled';
                 //init();
                 //training.Level();
             }

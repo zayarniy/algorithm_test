@@ -39,6 +39,34 @@ let tasks =
                 document.getElementById('initM').textContent = m;
                 document.getElementById('initN').textContent = n;
                 console.log(data);
+            },
+            check: function check(showAnswers = false) {
+                let countRed = 0;
+                let countGreen = 0;
+                let count = 0;
+                for (i = 1; i < data.length; i++) {
+                    for (j = 0; j < data[i].length; j++) {
+                        let el = document.getElementById(i + "" + j);
+                        if (showAnswers) el.value = data[i][j];//Показываем все ответы или
+                        else {
+                            count++;//показываем не все ответы
+                            if (el.value != '')
+                                if (data[i][j] == el.value) {
+                                    el.style.color = 'green';
+                                    countGreen++;
+                                }
+                                else {
+                                    el.style.color = 'red';
+                                    countRed++;
+                                }
+                        }
+                    }
+                }
+                //score = (count == countGreen ? countGreen : 0);
+                score = countGreen;
+                errorsTotal += countRed;
+                infoUpdate();
+
             }
 
         }
@@ -73,6 +101,7 @@ function createTable() {
         for (j = 0; j < data[i].length; j++) {
             let cell = document.createElement('td');
             let inp = document.createElement('input');
+            inp.autocomplete = 'off';
             inp.id = i + "" + j;
             inp.style = 'width:60px';
             //inp.value = data[i][j];

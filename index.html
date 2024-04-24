@@ -16,45 +16,50 @@
 
 <body onload="init()">
     <div class="containter">
+        <div class="row fixed-top nav_panel" style="text-align: center;font-size: 20px;">
+            <div class="col">
+                <span>Номер задания:</span><span id="taskNumber">0</span>
+            </div>
 
-        <head class="row justify-content-center">
+            <div class="col">
+                <span>Баллов:</span><span id="scores">0</span>
+            </div>
+            <div class="col">
+                <span>Баллов всего:</span><span id="scoresTotal">0</span>
+            </div>
+            <div class="col">
+                <span>Ошибок всего:</span><span style="color: red;" id="errorsTotal">0</span>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <h2>Анализ блок-схем</h2>
             <h2>Анализ блок-схем</h2>
             <p>Проанализируйте алгоритм и заполните таблицу трассировки. <strong style="color: green;">+</strong> -
                 условие истино,
                 <strong style="color: green;">-</strong> -
                 условие ложно
             </p>
-        </head>
+        </div>
 
         <div class="row">
             <div class="col-12">
                 <p>Проанализируйте алгоритм и скажите чему будет равняться переменная m при m=<span id="initM"></span>,
-                    n=<span id="initN"></span></span></p>
-            </div>
-            <div class="col-6">
-                <img src="algorithms/001.png" width="100%">
+                    n=<span id="initN"></span></p>
             </div>
             <div class="col-6">
                 <table style="border: 2px solid black;" class="table text-center caption-top" id="traceTable">
                     <caption>Таблица трассировки</caption>
                 </table>
-                <!--
-                <p>Вывод на экран</p>
-                <table id="outputTable">
-                    <tr>
-                        <th>m</th>
-                    </tr>
-                    <tr>
-                        <td><input id="c1" style="width: 40px;" type='text'></td>
-                    </tr>
-                </table>
--->
-                <button id="btnNext" style="visibility:collapse;" onclick="next()">Далее</button>
+
+                <button id="btnCheck" style="visibility:visible;" class="btn btn-primary">Проверить</button>
+            </div>
+            <div class="col-6">
+                <img src="algorithms/001.png" width="100%">
             </div>
         </div>
         <div class="row">
-            <div class=" fixed-bottom nav_panel">
-                <span id="scores" style="width: 60px; text-align: center; font-size: 30px;">0</span>
+            <div class="col fixed-bottom nav_panel">
 
                 <div id="progress-bar" style="border:0px solid black;">
                     <div id="progress-bar-fill"></div>
@@ -62,8 +67,7 @@
 
                 <span id="countDown" style="font-size: 30px;"></span>
 
-                <button id='check' style="width: 100px;" class="btn btn-primary right my_btn"
-                    onclick="check()">Проверить</button>
+                <button id='btnCheck' class="btn btn-primary  my_btn" onclick="next()">Далее</button>
             </div>
         </div>
 

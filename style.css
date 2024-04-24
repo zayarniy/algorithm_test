@@ -1,5 +1,5 @@
 #progress-bar {
-    width: 90%;
+    width: 100%;
     display: inline;
     #flex-basis: auto;
     #flex-grow: 1;
@@ -24,23 +24,24 @@
 }
 
 .nav_panel {
-    position: absolute;
-    box-sizing: content-box;
-    left: 10px;
-    bottom: 10px;
-    #width: 70%;
-    margin: 10px;
-    padding: 0px;
+    #position: absolute;
+    #box-sizing: content-box;
+    #left: 10px;
+    #bottom: 10px;
+    #width: 20%;
+    #width: 500px;
+    #margin: 10px;
+    #padding: 0px;
     min-width: 500px;
-    max-width: 80%;
+    #max-width: 80%;
     height: 45px;
     background-color: cornflowerblue;
-    border: 1px solid black;
+    #border: 1px solid black;
     color: white;
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
+    #flex-direction: row;
+    #flex-wrap: nowrap;
+    #justify-content: space-between;
 
     #align-content: flex-end;
     #align-items: center;
