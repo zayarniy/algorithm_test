@@ -1,5 +1,5 @@
 let data;
-let taskQuery = [0, 0, 0, 1, 1, 1];
+let taskQuery = [0, 0, 1, 1, 2, 2, 3, 3];
 
 let tasks =
     [
@@ -114,14 +114,167 @@ let tasks =
             init: function () {
                 data = [[]]
                 r = 2;//getRandomInt(2, 15);
-                m = getRandomInt(2, 20) * r;
-                n = 10;// getRandomInt(2, 21) * r;
+                m = getRandomInt(4, 11) * r;
+                n = getRandomInt(2, 10);// getRandomInt(2, 21) * r;
                 this.task(data, m, n);
                 //console.log(r, m, n);
                 document.getElementById('imageAlgorithm').src = tasks[currentTask].imageAlgorithm
                 document.getElementById('textTask').innerHTML = tasks[currentTask].textTask;
                 document.getElementById('initM').textContent = m;
                 document.getElementById('initN').textContent = n;
+                //console.log(data);
+            },
+            check: function check(showAnswers = false) {
+                let countRed = 0;
+                let countGreen = 0;
+                let count = 0;
+                for (i = 1; i < data.length; i++) {
+                    for (j = 0; j < data[i].length; j++) {
+                        let el = document.getElementById(i + "" + j);
+                        if (showAnswers) el.value = data[i][j];//Показываем все ответы или
+                        else {
+                            count++;//показываем не все ответы
+                            if (el.value != '')
+                                if (data[i][j] == el.value) {
+                                    el.style.color = 'green';
+                                    countGreen++;
+                                }
+                                else {
+                                    el.style.color = 'red';
+                                    countRed++;
+                                }
+                        }
+                    }
+                }
+                //score = (count == countGreen ? countGreen : 0);
+                score = countGreen;
+                errorsTotal += countRed;
+
+                infoUpdate();
+
+            }
+
+        },
+        {
+            textTask: 'Проанализируйте алгоритм и заполните таблицу трассировки при x=<span id="initX"></span>, y=<span id="initY"></span>',
+            imageAlgorithm: 'algorithms/003.svg',
+            task: function (data, x, y) {
+                //Инициализация
+                data[0][0] = 'x'
+                data[0][1] = 'y'
+                data[0][2] = 'x<30'
+                data[0][3] = 'x>=y'
+                let i = 1;
+                let count = 0;
+                while (x < 30) {
+                    data.push([])
+                    data[i][0] = x;
+                    data[i][1] = y;
+                    data[i][2] = x < 30 ? '+' : '-';
+                    data[i][3] = x >= y ? '+' : '-';
+                    count += data[i].length;
+                    if (x >= y) {
+                        x = x - 5;
+                        y = y + 5;
+                    }
+                    else {
+                        x = x + 10;
+                        y = y - 10;
+                    }
+                    i++;
+                }
+                //Вывод
+                data.push([])
+                data[i][0] = x;
+                data[i][1] = y;
+                data[i][2] = x < 30 ? '+' : '-';
+                data[i][3] = x >= y ? '+' : '-';
+                count += data[i].length;
+                scoreMax = count;
+            },
+            init: function () {
+                data = [[]]
+                r = 2;//getRandomInt(2, 15);
+                x = 15;//getRandomInt(4, 11) * r;
+                y = 35 + getRandomInt(0, 3) * 5;// getRandomInt(2, 21) * r;
+                this.task(data, x, y);
+                //console.log(r, m, n);
+                document.getElementById('imageAlgorithm').src = tasks[currentTask].imageAlgorithm
+                document.getElementById('textTask').innerHTML = tasks[currentTask].textTask;
+                document.getElementById('initX').textContent = x;
+                document.getElementById('initY').textContent = y;
+                //console.log(data);
+            },
+            check: function check(showAnswers = false) {
+                let countRed = 0;
+                let countGreen = 0;
+                let count = 0;
+                for (i = 1; i < data.length; i++) {
+                    for (j = 0; j < data[i].length; j++) {
+                        let el = document.getElementById(i + "" + j);
+                        if (showAnswers) el.value = data[i][j];//Показываем все ответы или
+                        else {
+                            count++;//показываем не все ответы
+                            if (el.value != '')
+                                if (data[i][j] == el.value) {
+                                    el.style.color = 'green';
+                                    countGreen++;
+                                }
+                                else {
+                                    el.style.color = 'red';
+                                    countRed++;
+                                }
+                        }
+                    }
+                }
+                //score = (count == countGreen ? countGreen : 0);
+                score = countGreen;
+                errorsTotal += countRed;
+
+                infoUpdate();
+
+            }
+
+        },
+        {
+            textTask: 'Проанализируйте алгоритм и заполните таблицу трассировки при a=<span id="initA"></span>, b=<span id="initB"></span>',
+            imageAlgorithm: 'algorithms/004.svg',
+            task: function (data, a, b) {
+                //Инициализация
+                data[0][0] = 'a'
+                data[0][1] = 'b'
+                data[0][2] = 'b!=32'
+                let i = 1;
+                let count = 0;
+                while (b != 32) {
+                    data.push([])
+                    data[i][0] = a;
+                    data[i][1] = b;
+                    data[i][2] = b != 32 ? '+' : '-';
+                    count += data[i].length;
+                    b = b * 2;
+                    a = a + 2;
+                    i++;
+                }
+                //Вывод
+                data.push([])
+                data[i][0] = a
+                data[i][1] = b
+                data[i][2] = b != 32 ? '+' : '-';
+                count += data[i].length;
+                scoreMax = count;
+            },
+            init: function () {
+                data = [[]]
+                r = 2;
+                a = getRandomInt(4, 11) * r;
+                b = 2;// getRandomInt(2, 21) * r;
+                this.task(data, a, b);
+                //console.log(r, m, n);
+                document.getElementById('imageAlgorithm').src = tasks[currentTask].imageAlgorithm
+                document.getElementById('textTask').innerHTML = tasks[currentTask].textTask;
+                document.getElementById('initA').textContent = a;
+                document.getElementById('initB').textContent = b;
                 //console.log(data);
             },
             check: function check(showAnswers = false) {
