@@ -9,9 +9,10 @@ let currentTask;
 
 
 function load() {
+    /*
     document.getElementById('btnCheck').addEventListener('click', () => {
         check();
-    });
+    });*/
     init();
 }
 
@@ -44,16 +45,11 @@ function init() {
             </div>
             `,
             showCloseButton: true,
-            showCancelButton: true,
+            showCancelButton: false,
             focusConfirm: false,
             confirmButtonText: `
-              <i class="fa fa-thumbs-up"></i> Great!
-            `,
-            confirmButtonAriaLabel: "Thumbs up, great!",
-            cancelButtonText: `
-              <i class="fa fa-thumbs-down"></i>
-            `,
-            cancelButtonAriaLabel: "Thumbs down"
+               Отлично!
+            `
         });
     }
 }

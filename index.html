@@ -35,33 +35,36 @@
 
         <div class="row justify-content-center">
             <div class="col-12">
-                <h2>Анализ блок-схем</h2>
+                <h2>Таблицы трассировки. Анализ блок-схем</h2>
                 <p id="textTask"></p>
+                <p><strong style="color: green;">+</strong> -
+                    условие истино,
+                    <strong style="color: green;">-</strong> -
+                    условие ложно
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button id='btnCheck' class="btn btn-primary my_btn" onclick="next()">Далее</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button id="btnCheck" style="visibility:visible;" class="btn btn-primary  my_btn"
+                    onclick="check()">Проверить</button>
+                <button id='btnClearTable' class="btn btn-primary  my_btn" onclick="clearTable()">Почистить</button>
             </div>
         </div>
 
         <div class="row">
-            <p><strong style="color: green;">+</strong> -
-                условие истино,
-                <strong style="color: green;">-</strong> -
-                условие ложно
-            </p>
             <div class="col-md-4">
                 <table style="border: 1px solid black;" class="table text-center caption-top" id="traceTable">
                     <caption>Таблица трассировки</caption>
                 </table>
-
-                <button id="btnCheck" style="visibility:visible;" class="btn btn-primary">Проверить</button>
-                <button id='btnClearTable' class="btn btn-primary  my_btn" onclick="clearTable()">Почистить</button>
             </div>
             <div class="col-md-8">
-                <img id="imageAlgorithm" width="90%">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-8">
-
-                <button id='btnCheck' class="btn btn-primary my_btn" onclick="next()">Далее</button>
+                <img id="imageAlgorithm" width="70%">
             </div>
         </div>
 
