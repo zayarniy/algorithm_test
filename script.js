@@ -5,7 +5,7 @@ let errorsTotal = 0;
 let taskNumber = 0;
 let scoreMax = 0;
 let currentTask;
-
+let percents = 0;
 
 
 function load() {
@@ -23,6 +23,7 @@ function init(next = true) {
         if (next) {
             taskNumber++;
             scoreTotal += score;
+            percents += scoreMax;
         }
         else {
 
@@ -35,19 +36,28 @@ function init(next = true) {
         createTable();
     }
     else {
+        let per = parseInt((scoreTotal - errorsTotal) / percents * 100);
+        if (per >= 90) ball = 5;
+        if (per >= 80 && per < 90) ball = 4;
+        if (per >= 65 && per < 80) ball = 3;
+        if (per < 65) ball = 2;
         Swal.fire({
-            title: "<strong>Результаты <u>теста</u></strong>",
+            title: "<strong>Результаты теста</strong>",
             icon: "info",
             html: `
             <div>
-                <span>Баллов:</span><span id="scores">0</span><span> из </span><span id="scoreMax">0</span>
+                <span>Ошибок всего:</span><span style="color: red;">${errorsTotal}</span>
             </div>
             <div>
-                <span>Ошибок всего:</span><span style="color: red;" id="errorsTotal">0</span>
+                <span>Баллов всего:</span><span>${scoreTotal}</span>
             </div>
             <div>
-                <span>Баллов всего:</span><span id="scoresTotal">0</span>
+                <span>Процент выполнения:</span><span>${(per)}%</span>
             </div>
+            <div>
+                <span>Оценка:</span><span>${(ball)}</span>
+            </div>
+
             `,
             showCloseButton: true,
             showCancelButton: false,
