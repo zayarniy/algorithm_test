@@ -1,5 +1,5 @@
 let data;
-let taskQuery = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5];
+let taskQuery = [0, 0, 1, 1, 2, 2, 3, 3, 4, 5];
 
 let tasks =
     [
@@ -309,12 +309,12 @@ function check(showAnswers = false) {
                 if (el.value != '')
                     if (data[i][j] == el.value) {
                         //el.style.color = 'green';
-                        el.style.backgroundColor = 'lightgreen';
+                        el.style.backgroundColor = '#0D6EFD';//lightgreen';
                         countGreen++;
                     }
                     else {
                         //el.style.color = 'red';
-                        el.style.backgroundColor = '#FF4444';
+                        el.style.backgroundColor = '#FFA100';
                         countRed++;
                     }
             }

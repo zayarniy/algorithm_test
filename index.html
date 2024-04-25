@@ -19,17 +19,20 @@
     <div class="container-fluid">
         <div class="row top_panel">
             <div class="col">
-                <span>Номер задания:</span><span id="taskNumber">0</span><span> из </span><span id="tasksTotal"></span>
+                <span class="infoLabel">Номер задания</span><br><span id="taskNumber" class="info">0</span><span> из
+                </span><span id="tasksTotal" class="info"></span>
             </div>
 
             <div class="col">
-                <span>Баллов:</span><span id="scores">0</span><span> из </span><span id="scoreMax">0</span>
+                <span class="infoLabel">Баллов за задание</span><br><span id="scores" class="info">0</span><span> из
+                </span><span id="scoreMax" class="info">0</span>
             </div>
             <div class="col">
-                <span>Ошибок всего:</span><span style="color: red;" id="errorsTotal">0</span>
+                <span class="infoLabel">Ошибок</span><br><span style="color: #FFA100;" id="errorsTotal"
+                    class="info">0</span>
             </div>
             <div class="col">
-                <span>Баллов всего:</span><span id="scoresTotal">0</span>
+                <span class="infoLabel">Баллов всего</span><br><span id="scoresTotal" class="info">0</span>
             </div>
         </div>
 
@@ -46,9 +49,11 @@
         </div>
         <div class="row">
             <div class="col">
-                <button id="btnCheck" style="visibility:visible;" class="btn btn-primary  my_btn"
+                <button id="btnCheck" style="visibility:visible;background-color: #FFA100;" class="btn  my_btn"
                     onclick="check()">Проверить</button>
-                <button id='btnClearTable' class="btn btn-primary  my_btn" onclick="clearTable()">Почистить</button>
+                <button id='btnClearTable' class="btn btn-primary  my_btn" onclick="clearTable()">Повторить</button>
+                <button id="btnCheck" style="visibility:visible;" class="btn btn-primary  my_btn"
+                    onclick="init(false)">Новое</button>
             </div>
         </div>
 
@@ -57,12 +62,14 @@
                 <table style="border: 1px solid black;" class="table text-center caption-top" id="traceTable">
                     <caption>Таблица трассировки</caption>
                 </table>
-                <button id="btnCheck" style="visibility:visible;" class="btn btn-primary  my_btn"
-                    onclick="init(false)">Повторить</button>
+                <div style="display: inline-block;width: 15px;height: 15px;background-color:#0D6EFD;"></div> <strong
+                    style="color:#0D6EFD">Верно</strong>
+                <div style="display: inline-block;width: 15px;height: 15px;background-color:#FFA100;"></div><strong
+                    style="color: #FFA100;">Неверно</strong>
 
             </div>
             <div class="col-md-8">
-                <img id="imageAlgorithm" width="70%">
+                <img id="imageAlgorithm" width="80%">
             </div>
         </div>
         <div class="row">

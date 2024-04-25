@@ -3,60 +3,24 @@ body {
     height: 100%;
 }
 
+.infoLabel {
+    font-style: italic;
 
-#progress-bar {
-    #flex-basis: auto;
-    #flex-grow: 1;
-    #flex-shrink: 0;
-    #border: 1px solid #0F0;
-    #background-color: ;
-    #display: flex;
-    #align-items: center;
-    #display: inline;
-
-    height: 45px;
-    width: 100%;
 }
 
-#progress-bar-fill {
-    #border: 1px solid #FF0000;
-    #transition: width 1s linear;
-    #top: 15px;
-
-    height: 20px;
-    background-color: #ffffff;
-    width: 0%;
-    position: relative;
-    margin-top: 10px;
-
+.info {
+    font-size: larger;
+    ;
 }
 
 .nav_panel {
-    #position: absolute;
-    #box-sizing: content-box;
-    #left: 10px;
-    #bottom: 10px;
-    #width: 20%;
-    #width: 500px;
-    #margin: 10px;
-    #padding: 0px;
-    #border: 1px solid black;
-    #max-width: 80%;
-    #min-width: 500px;
-    #height: 45px;
-    #flex-direction: row;
-    #flex-wrap: nowrap;
-    #justify-content: space-between;
-    #align-content: flex-end;
-    #align-items: center;
-
-    background-color: cornflowerblue;
+    background-color: #0D6EFD;
     color: white;
     #display: flex;
 }
 
 .top_panel {
-    background-color: cornflowerblue;
+    background-color: #0D6EFD;
     color: white;
     #display: flex;
     text-align: center;
