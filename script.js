@@ -16,12 +16,17 @@ function load() {
     init();
 }
 
-function init() {
+function init(next = true) {
 
     if (taskNumber != taskQuery.length) {
         currentTask = taskQuery[taskNumber];
-        taskNumber++;
-        scoreTotal += score;
+        if (next) {
+            taskNumber++;
+            scoreTotal += score;
+        }
+        else {
+
+        }
         score = 0;
         tasks[currentTask].init();
         //if (si != null) clearInterval(si);
