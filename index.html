@@ -16,7 +16,7 @@
 </head>
 
 <body onload="load()">
-    <div class="containter">
+    <div class="container-fluid">
         <div class="row top_panel">
             <div class="col">
                 <span>Номер задания:</span><span id="taskNumber">0</span><span> из </span><span id="tasksTotal"></span>
@@ -34,8 +34,8 @@
         </div>
 
         <div class="row justify-content-center">
-            <h2>Анализ блок-схем</h2>
             <div class="col-12">
+                <h2>Анализ блок-схем</h2>
                 <p id="textTask"></p>
             </div>
         </div>
@@ -55,19 +55,13 @@
                 <button id='btnClearTable' class="btn btn-primary  my_btn" onclick="clearTable()">Почистить</button>
             </div>
             <div class="col-md-8">
-                <img id="imageAlgorithm" width="100%">
+                <img id="imageAlgorithm" width="90%">
             </div>
         </div>
         <div class="row">
-            <div class="col nav_panel">
+            <div class="col-8">
 
-                <div id="progress-bar" style="border:0px solid black;">
-                    <div id="progress-bar-fill"></div>
-                </div>
-
-                <span id="countDown" style="font-size: 30px; visibility: collapse;"></span>
-
-                <button id='btnCheck' class="btn btn-primary  my_btn" onclick="next()">Далее</button>
+                <button id='btnCheck' class="btn btn-primary my_btn" onclick="next()">Далее</button>
             </div>
         </div>
 
