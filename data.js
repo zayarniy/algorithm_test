@@ -48,35 +48,6 @@ let tasks =
                 document.getElementById('initM').textContent = m;
                 document.getElementById('initN').textContent = n;
                 //console.log(data);
-            },
-            check: function check(showAnswers = false) {
-                let countRed = 0;
-                let countGreen = 0;
-                let count = 0;
-                for (i = 1; i < data.length; i++) {
-                    for (j = 0; j < data[i].length; j++) {
-                        let el = document.getElementById(i + "" + j);
-                        if (showAnswers) el.value = data[i][j];//Показываем все ответы или
-                        else {
-                            count++;//показываем не все ответы
-                            if (el.value != '')
-                                if (data[i][j] == el.value) {
-                                    el.style.color = 'green';
-                                    countGreen++;
-                                }
-                                else {
-                                    el.style.color = 'red';
-                                    countRed++;
-                                }
-                        }
-                    }
-                }
-                //score = (count == countGreen ? countGreen : 0);
-                score = countGreen;
-                errorsTotal += countRed;
-
-                infoUpdate();
-
             }
 
         },
@@ -123,36 +94,8 @@ let tasks =
                 document.getElementById('initM').textContent = m;
                 document.getElementById('initN').textContent = n;
                 //console.log(data);
-            },
-            check: function check(showAnswers = false) {
-                let countRed = 0;
-                let countGreen = 0;
-                let count = 0;
-                for (i = 1; i < data.length; i++) {
-                    for (j = 0; j < data[i].length; j++) {
-                        let el = document.getElementById(i + "" + j);
-                        if (showAnswers) el.value = data[i][j];//Показываем все ответы или
-                        else {
-                            count++;//показываем не все ответы
-                            if (el.value != '')
-                                if (data[i][j] == el.value) {
-                                    el.style.color = 'green';
-                                    countGreen++;
-                                }
-                                else {
-                                    el.style.color = 'red';
-                                    countRed++;
-                                }
-                        }
-                    }
-                }
-                //score = (count == countGreen ? countGreen : 0);
-                score = countGreen;
-                errorsTotal += countRed;
-
-                infoUpdate();
-
             }
+
 
         },
         {
@@ -276,39 +219,100 @@ let tasks =
                 document.getElementById('initA').textContent = a;
                 document.getElementById('initB').textContent = b;
                 //console.log(data);
-            },
-            check: function check(showAnswers = false) {
-                let countRed = 0;
-                let countGreen = 0;
-                let count = 0;
-                for (i = 1; i < data.length; i++) {
-                    for (j = 0; j < data[i].length; j++) {
-                        let el = document.getElementById(i + "" + j);
-                        if (showAnswers) el.value = data[i][j];//Показываем все ответы или
-                        else {
-                            count++;//показываем не все ответы
-                            if (el.value != '')
-                                if (data[i][j] == el.value) {
-                                    el.style.color = 'green';
-                                    countGreen++;
-                                }
-                                else {
-                                    el.style.color = 'red';
-                                    countRed++;
-                                }
-                        }
-                    }
-                }
-                //score = (count == countGreen ? countGreen : 0);
-                score = countGreen;
-                errorsTotal += countRed;
-
-                infoUpdate();
-
             }
+
+
+        },
+
+        {
+            textTask: 'Проанализируйте алгоритм и заполните таблицу трассировки при a=<span id="initA"></span>, b=<span id="initB"></span>',
+            imageAlgorithm: 'algorithms/005.svg',
+            task: function (data, a, b) {
+                //Инициализация
+                data[0][0] = 'a'
+                data[0][1] = 'b'
+                data[0][2] = 'b!=4'
+                let i = 1;
+                let count = 0;
+                while (b != 4) {
+                    data.push([])
+                    data[i][0] = a;
+                    data[i][1] = b;
+                    data[i][2] = b != 4 ? '+' : '-';
+                    count += data[i].length;
+                    b = b + 1;
+                    a = a * 2;
+                    i++;
+                }
+                //Вывод
+                data.push([])
+                data[i][0] = a
+                data[i][1] = b
+                data[i][2] = b != 4 ? '+' : '-';
+                count += data[i].length;
+                scoreMax = count;
+            },
+            init: function () {
+                data = [[]]
+                r = 1;
+                a = getRandomInt(1, 4) * r;
+                b = 0;// getRandomInt(2, 21) * r;
+                this.task(data, a, b);
+                //console.log(r, m, n);
+                document.getElementById('imageAlgorithm').src = tasks[currentTask].imageAlgorithm
+                document.getElementById('textTask').innerHTML = tasks[currentTask].textTask;
+                document.getElementById('initA').textContent = a;
+                document.getElementById('initB').textContent = b;
+                //console.log(data);
+            }
+
 
         }
     ]
+
+
+
+function check(showAnswers = false) {
+    let countRed = 0;
+    let countGreen = 0;
+    let count = 0;
+    for (i = 1; i < data.length; i++) {
+        for (j = 0; j < data[i].length; j++) {
+            let el = document.getElementById(i + "" + j);
+            if (showAnswers) el.value = data[i][j];//Показываем все ответы или
+            else {
+                count++;//показываем не все ответы
+                if (el.value != '')
+                    if (data[i][j] == el.value) {
+                        //el.style.color = 'green';
+                        el.style.backgroundColor = 'lightgreen';
+                        countGreen++;
+                    }
+                    else {
+                        //el.style.color = 'red';
+                        el.style.backgroundColor = '#FF4444';
+                        countRed++;
+                    }
+            }
+        }
+    }
+    //score = (count == countGreen ? countGreen : 0);
+    score = countGreen;
+    errorsTotal += countRed;
+
+    infoUpdate();
+}
+
+function clearTable() {
+    for (i = 1; i < data.length; i++) {
+        for (j = 0; j < data[i].length; j++) {
+            let el = document.getElementById(i + "" + j);
+            el.value = '';
+            el.style.backgroundColor = 'white';
+        }
+    }
+}
+
 
 function createTable() {
     let table = document.getElementById('traceTable');
@@ -321,10 +325,12 @@ function createTable() {
     let row = document.createElement('tr');
     let cell = document.createElement('th');
     cell.textContent = '№';
+    cell.style.width = '60px'
     row.appendChild(cell)
     for (j = 0; j < data[0].length; j++) {
         let cell = document.createElement('th');
         cell.textContent = data[0][j]
+        cell.style.width = '60px'
         row.appendChild(cell)
     }
     table.appendChild(row);
@@ -341,7 +347,7 @@ function createTable() {
             let inp = document.createElement('input');
             inp.autocomplete = 'off';
             inp.id = i + "" + j;
-            inp.style = 'width:60px';
+            inp.style = 'width:55px';
             //inp.value = data[i][j];
             cell.appendChild(inp);
             row.appendChild(cell)

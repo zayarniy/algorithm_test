@@ -6,20 +6,56 @@ let taskNumber = 0;
 let scoreMax = 0;
 let currentTask;
 
-function init() {
-    currentTask = taskQuery[taskNumber];
-    taskNumber++;
-    scoreTotal += score;
-    score = 0;
-    tasks[currentTask].init();
-    //if (si != null) clearInterval(si);
-    //startCountdown(100);
-    infoUpdate();
-    createTable();
 
+
+function load() {
     document.getElementById('btnCheck').addEventListener('click', () => {
-        tasks[currentTask].check();
+        check();
     });
+    init();
+}
+
+function init() {
+
+    if (taskNumber != taskQuery.length) {
+        currentTask = taskQuery[taskNumber];
+        taskNumber++;
+        scoreTotal += score;
+        score = 0;
+        tasks[currentTask].init();
+        //if (si != null) clearInterval(si);
+        //startCountdown(100);
+        infoUpdate();
+        createTable();
+    }
+    else {
+        Swal.fire({
+            title: "<strong>Результаты <u>теста</u></strong>",
+            icon: "info",
+            html: `
+            <div>
+                <span>Баллов:</span><span id="scores">0</span><span> из </span><span id="scoreMax">0</span>
+            </div>
+            <div>
+                <span>Ошибок всего:</span><span style="color: red;" id="errorsTotal">0</span>
+            </div>
+            <div>
+                <span>Баллов всего:</span><span id="scoresTotal">0</span>
+            </div>
+            `,
+            showCloseButton: true,
+            showCancelButton: true,
+            focusConfirm: false,
+            confirmButtonText: `
+              <i class="fa fa-thumbs-up"></i> Great!
+            `,
+            confirmButtonAriaLabel: "Thumbs up, great!",
+            cancelButtonText: `
+              <i class="fa fa-thumbs-down"></i>
+            `,
+            cancelButtonAriaLabel: "Thumbs down"
+        });
+    }
 }
 
 function next() {
@@ -32,6 +68,7 @@ function infoUpdate() {
     document.getElementById('errorsTotal').textContent = errorsTotal;
     document.getElementById('taskNumber').textContent = taskNumber;
     document.getElementById('scoreMax').textContent = scoreMax;
+    document.getElementById('tasksTotal').textContent = taskQuery.length;
 
 }
 
