@@ -24,6 +24,7 @@ let tasks =
                     i++;
                     count += 4;
                 }
+
                 //Вывод
                 data.push([])
                 data[i][0] = m;
