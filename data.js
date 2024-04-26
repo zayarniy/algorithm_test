@@ -5,7 +5,7 @@ let tasks =
     [
         {
             textTask: 'Проанализируйте алгоритм и заполните таблицу трассировки при m=<span id="initM"></span>, n=<span id="initN"></span>',
-            imageAlgorithm: 'algorithms/001.png',
+            imageAlgorithm: 'algorithms/001.svg',
             task: function (data, m, n) {
                 //Инициализация
                 data[0][0] = 'm'
