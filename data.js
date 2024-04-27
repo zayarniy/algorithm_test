@@ -1,5 +1,6 @@
 let data;
 let taskQuery = [0, 0, 1, 1, 2, 2, 3, 3, 4, 5];
+//let taskQuery = [0, 1];
 
 let tasks =
     [
