@@ -22,10 +22,10 @@ function load() {
         check();
     });*/
     // Прослушиваем события нажатия клавиш
+    comboboxInit();
     document.addEventListener('keydown', handlePasswordInput);
     checkTimeStart();
     checkTimeFinish();
-    init();
 }
 
 function init(next = true) {
@@ -56,7 +56,7 @@ function init(next = true) {
         if (percents < 65) ball = 2;
         showResult(percents).then((result) => {
             if (result.isConfirmed) {
-                inputText().then((name) => {
+                inputText("Сохранение", `Введите свое <strong>фамилию</strong> и <strong>имя</strong>:`, "Иванов Иван").then((name) => {
                     if (name.value != "") {
                         name = name.value.trim().replace(/\s+/g, " ").split(' ');
                         lastName = name[0];
@@ -105,14 +105,30 @@ function showResult(per) {
 
 }
 
-function inputText() {
+
+function showMessage(captionHTML = 'info', messageHTML, icon = 'info') {
     return Swal.fire({
-        title: "Сохранение",
-        html: `Введите свое <strong>фамилию</strong> и <strong>имя</strong>:`,
+        title: captionHTML,
+        icon: icon,
+        html: messageHTML,
+        showCloseButton: true,
+        focusConfirm: false,
+        confirmButtonText: `
+           Понял
+        `
+    });
+
+}
+
+
+function inputText(title, html, inputPlaceholder) {
+    return Swal.fire({
+        title: title,
+        html: html,
         input: 'text',
         showCancelButton: true,
         animation: "slide-from-top",
-        inputPlaceholder: "Иванов Иван"
+        inputPlaceholder: inputPlaceholder
     });
 }
 
@@ -127,33 +143,6 @@ function infoUpdate() {
 }
 
 
-
-function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min) + min);
-}
-
-
-function startCountdown(countDown) {
-    //if (training.isStartCountdown) 
-    {
-        let cd = document.getElementById('countDown');
-        let pbf = document.getElementById('progress-bar-fill');
-        si = setInterval(() => {
-            if (countDown > 1) {
-                countDown--;
-                pbf.style.width = countDown + "%";
-                cd.textContent = countDown;
-            } else {
-                clearInterval(si)
-                countDown = 0;
-                pbf.style.width = countDown + "%";
-                cd.textContent = countDown;
-                tasks[0].check(true);
-
-            }
-        }, 1000);
-    }
-}
 
 
 function checkTimeStart() {
@@ -227,18 +216,7 @@ function sendJSONToDB() {
 
 }
 
-function getCurrentDate() {
-    fetch('https://inform.xn--80ahlrjqm6azc.xn--p1ai/algorithm_test/php/get_date.php')
-        .then(response => response.text())
-        .then(data => {
-            // Обновляем содержимое элемента с id="current-date"
-            console.log(data);
-        })
-        .catch(error => {
-            console.error('Ошибка:', error);
-        });
-}
-
+/*
 function sendData() {
     //const data = { name: 'Иван', age: 30 };
     let infoResult = {
@@ -268,6 +246,7 @@ function sendData() {
             console.error('Ошибка:', error);
         });
 }
+*/
 
 //https://inform.xn--80ahlrjqm6azc.xn--p1ai/algorithm_test/php/get_tests_results.php
 
@@ -343,5 +322,138 @@ function executeFunction() {
 
 function hideTableResults() {
     document.getElementById('tableResults').style.visibility = 'collapse';
+}
+
+
+
+let comboboxInput;
+let comboboxSelect;
+
+function comboboxInit() {
+    comboboxInput = document.getElementById('combobox-input');
+    comboboxSelect = document.getElementById('combobox-select');
+
+    comboboxInput.addEventListener('click', () => {
+        comboboxSelect.style.display = 'block';
+    });
+
+    comboboxSelect.addEventListener('change', () => {
+        comboboxInput.value = comboboxSelect.value;
+        comboboxSelect.style.display = 'none';
+    });
+
+    document.addEventListener('click', (event) => {
+        const isClickInside = comboboxInput.contains(event.target) || comboboxSelect.contains(event.target);
+        if (!isClickInside) {
+            comboboxSelect.style.display = 'none';
+        }
+    });
+}
+
+async function startTask(element) {
+    console.log(element)
+    let idElement = element.id;
+    switch (idElement) {
+        case 'task01':
+            taskQuery = [0, 1, 2, 3, 4, 5];
+            break;
+        case 'task02':
+            taskQuery = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5];
+            break;
+        case 'task03':
+            taskQuery = [0, 0, 0, 0, 0];
+            break;
+        case 'task04':
+            taskQuery = [1, 1, 1, 1, 1];
+            break;
+        case 'task05':
+            taskQuery = [2, 2, 2, 2, 2];
+            break;
+        case 'task06':
+            taskQuery = [3, 3, 3, 3, 3];
+            break;
+        case 'task07':
+            taskQuery = [4, 4, 4, 4, 4];
+            break;
+        case 'task08':
+            taskQuery = [5, 5, 5, 5, 5];
+            break;
+        case 'task09':
+            taskQuery = [0, 0, 0];
+            break;
+        case 'task10':
+            taskQuery = [1, 1, 1];
+            break;
+        case 'task11':
+            taskQuery = [2, 2, 2];
+            break;
+        case 'task12':
+            taskQuery = [3, 3, 3];
+            break;
+        case 'task13':
+            taskQuery = [4, 4, 4];
+            break;
+        case 'task14':
+            taskQuery = [5, 5, 5];
+            break;
+        case 'task15':
+            console.log(document.getElementById('combobox-input').value)
+
+            let count = parseInt(document.getElementById('combobox-input').value);
+            if (isNaN(count)) {
+                showMessage('Внимание!', 'Введите число', 'warning');
+                return;
+            }
+            if (count < 1 || count > 100) {
+                showMessage('Внимание!', 'Введите число от 1 до 100', 'warning');
+                return;
+            }
+            taskQuery = [];
+            for (let i = 0; i < count; i++)
+                taskQuery.push(getRandomInt(1, 5));
+            console.log(taskQuery);
+            break;
+        case 'task16':
+            let result = await inputText('Ввод заданий', 'Введите задания с номерами от 0 до 5 через запятую<br>Например:0,0,1,2,3,5', '0,1,2,3,4,5');
+            if (result.isConfirmed) {
+
+                console.log(result)
+                taskQuery = result.value.split(',').map(str => parseInt(str))
+                if (!taskQuery.every(value => typeof value == 'number' && value < 6 && value >= 0)) return;
+                console.log(taskQuery);
+            }
+            else return;
+            break;
+    }
+    init();
+    document.getElementById('selectView').style.visibility = "collapse";
+    document.getElementById('mainView').style.visibility = 'visible';
+}
+
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min) + min);
+}
+
+
+function startCountdown(countDown) {
+    //if (training.isStartCountdown) 
+    {
+        let cd = document.getElementById('countDown');
+        let pbf = document.getElementById('progress-bar-fill');
+        si = setInterval(() => {
+            if (countDown > 1) {
+                countDown--;
+                pbf.style.width = countDown + "%";
+                cd.textContent = countDown;
+            } else {
+                clearInterval(si)
+                countDown = 0;
+                pbf.style.width = countDown + "%";
+                cd.textContent = countDown;
+                tasks[0].check(true);
+
+            }
+        }, 1000);
+    }
 }
 
