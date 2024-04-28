@@ -123,7 +123,7 @@ function infoUpdate() {
     document.getElementById('taskNumber').textContent = taskNumber;
     document.getElementById('scoreMax').textContent = scoreMax;
     document.getElementById('tasksTotal').textContent = taskQuery.length;
-
+    document.getElementById('percent').textContent = parseInt((scoreTotal - errorsTotal) / (scoreMaxTotal == 0 ? 1 : scoreMaxTotal) * 100);
 }
 
 

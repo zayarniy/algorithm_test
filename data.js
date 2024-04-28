@@ -1,5 +1,5 @@
 let data;
-let taskQuery = [0, 0, 1, 1, 2, 2, 3, 3, 4, 5];
+let taskQuery = [0, 1, 2, 3, 4, 5];
 //let taskQuery = [0, 1];
 
 let tasks =
@@ -41,8 +41,11 @@ let tasks =
             init: function () {
                 data = [[]]
                 r = getRandomInt(2, 15);
-                m = getRandomInt(2, 20) * r;
-                n = getRandomInt(2, 21) * r;
+                do {
+                    m = getRandomInt(2, 20) * r;
+                    n = getRandomInt(2, 21) * r;
+                }
+                while (m == n);
                 this.task(data, m, n);
                 //console.log(r, m, n);
                 document.getElementById('imageAlgorithm').src = tasks[currentTask].imageAlgorithm

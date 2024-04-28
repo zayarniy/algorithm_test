@@ -34,15 +34,18 @@
             <div class="col">
                 <span class="infoLabel">Баллов всего</span><br><span id="scoresTotal" class="info">0</span>
             </div>
+            <div class="col">
+                <span class="infoLabel">Процент выполнения:</span><br><span id="percent" class="info">0</span>
+            </div>
         </div>
 
         <div class="row justify-content-center">
             <div class="col-12">
                 <h2>Таблицы трассировки. Анализ блок-схем</h2>
                 <p id="textTask"></p>
-                <p><strong style="color: green;">+</strong> -
+                <p><strong style="color:#FFA100;font-size: larger;">+</strong> -
                     условие истино,
-                    <strong style="color: green;">-</strong> -
+                    <strong style="color: #FFA100; font-size: larger;">-</strong> -
                     условие ложно
                 </p>
             </div>
@@ -51,9 +54,10 @@
             <div class="col">
                 <button id="btnCheck" style="visibility:visible;background-color: #FFA100;" class="btn  my_btn"
                     onclick="check()">Проверить</button>
-                <button id='btnClearTable' class="btn btn-primary  my_btn" onclick="clearTable()">Повторить</button>
-                <button id="btnCheck" style="visibility:visible;" class="btn btn-primary  my_btn"
-                    onclick="init(false)">Новое</button>
+                <div style="display: inline-block;width: 15px;height: 15px;background-color:#0D6EFD;"></div> <strong
+                    style="color:#0D6EFD">Верно</strong>
+                <div style="display: inline-block;width: 15px;height: 15px;background-color:#FFA100;"></div><strong
+                    style="color: #FFA100;">Неверно</strong>
             </div>
         </div>
 
@@ -62,10 +66,10 @@
                 <table style="border: 1px solid black;" class="table text-center caption-top" id="traceTable">
                     <caption>Таблица трассировки</caption>
                 </table>
-                <div style="display: inline-block;width: 15px;height: 15px;background-color:#0D6EFD;"></div> <strong
-                    style="color:#0D6EFD">Верно</strong>
-                <div style="display: inline-block;width: 15px;height: 15px;background-color:#FFA100;"></div><strong
-                    style="color: #FFA100;">Неверно</strong>
+                <button id='btnClearTable' class="btn my_btn" style="visibility:visible;background-color: #FFA100;"
+                    onclick="clearTable()">Повторить</button>
+                <button id="btnCheck" style="visibility:visible;background-color: #FFA100;" class="btn my_btn"
+                    onclick="init(false)">Новое</button>
 
             </div>
             <div class="col-md-8">
