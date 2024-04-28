@@ -11,12 +11,18 @@ let scoreMaxTotal = 0;
 let timeStart = '', timeFinish = ''
 let lastName = '', firstName = '';
 let ball = 0;
+let password = '';
+const MAX_LENGTH = 6;
+const targetPassword = 'qqwwee';
+
 
 function load() {
     /*
     document.getElementById('btnCheck').addEventListener('click', () => {
         check();
     });*/
+    // Прослушиваем события нажатия клавиш
+    document.addEventListener('keydown', handlePasswordInput);
     checkTimeStart();
     checkTimeFinish();
     init();
@@ -262,3 +268,80 @@ function sendData() {
             console.error('Ошибка:', error);
         });
 }
+
+//https://inform.xn--80ahlrjqm6azc.xn--p1ai/algorithm_test/php/get_tests_results.php
+
+function get_tests_results() {
+    // Отправляем запрос на PHP-скрипт для получения данных из базы данных
+    fetch('https://inform.xn--80ahlrjqm6azc.xn--p1ai/algorithm_test/php/get_tests_results.php')
+        .then(response => response.json())
+        .then(data => {
+            // Создаем таблицу для вывода данных
+            const table = document.createElement('table');
+            table.classList.add('table');
+            const thead = document.createElement('thead');
+            const tbody = document.createElement('tbody');
+
+            // Создаем заголовки таблицы
+            const headers = Object.keys(data[0]);
+            const headerRow = document.createElement('tr');
+            headers.forEach(header => {
+                const th = document.createElement('th');
+                th.textContent = header;
+                headerRow.appendChild(th);
+            });
+            thead.appendChild(headerRow);
+            table.appendChild(thead);
+
+            // Создаем строки данных
+            data.forEach(row => {
+                const dataRow = document.createElement('tr');
+                Object.values(row).forEach(value => {
+                    const td = document.createElement('td');
+                    td.textContent = value;
+                    dataRow.appendChild(td);
+                });
+                tbody.appendChild(dataRow);
+            });
+            table.appendChild(tbody);
+
+            // Выводим таблицу в блок div с id 'tableResults'
+            const resultsDiv = document.getElementById('tableResults');
+            resultsDiv.innerHTML = '';
+            resultsDiv.appendChild(table);
+            document.getElementById('tableResults').style.visibility = 'visible';
+        })
+        .catch(error => {
+            console.error('Ошибка при получении данных из базы данных:', error);
+        });
+};
+
+
+function handlePasswordInput(event) {
+    const key = event.key.toLowerCase();
+
+    // Добавляем новую букву к строке пароля
+    password += key;
+
+    // Ограничиваем длину строки пароля до MAX_LENGTH
+    if (password.length > MAX_LENGTH) {
+        password = password.slice(1);
+    }
+
+    // Если строка пароля совпадает с целевым паролем, вызываем функцию
+    if (password === targetPassword) {
+        executeFunction();
+        password = ''; // Сбрасываем строку пароля после выполнения функции
+    }
+}
+
+function executeFunction() {
+    // Здесь можно разместить любой код, который нужно выполнить при вводе пароля
+    console.log('Пароль введен успешно!');
+    get_tests_results();
+}
+
+function hideTableResults() {
+    document.getElementById('tableResults').style.visibility = 'collapse';
+}
+
