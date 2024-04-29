@@ -20,7 +20,7 @@
 
 <body onload="load()">
     <div class="container-fluid">
-        <div id="selectView" style="visibility:visible;">
+        <div id="selectView" style="display: block;">
             <table class="table text-center">
                 <tr>
                     <th>№</th>
@@ -137,8 +137,8 @@
             </table>
 
         </div>
-        <div id="mainView" style="visibility: collapse;">
-            <div class="row top_panel" style="visibility: inherit;">
+        <div id="mainView" style="display: none;">
+            <div class="row top_panel">
                 <div class="col">
                     <span class="infoLabel">Номер задания</span><br><span id="taskNumber" class="info">0</span><span> из
                     </span><span id="tasksTotal" class="info"></span>
@@ -160,7 +160,7 @@
                 </div>
             </div>
 
-            <div class="row justify-content-center" style="visibility: inherit;">
+            <div class="row justify-content-center">
                 <div class="col-12">
                     <h2>Таблицы трассировки. Анализ блок-схем</h2>
                     <p id="textTask"></p>
@@ -171,7 +171,7 @@
                     </p>
                 </div>
             </div>
-            <div class="row" style="visibility: inherit;">
+            <div class="row">
                 <div class="col">
                     <button id="btnCheck" style="visibility:inherit;background-color: #FFA100;" class="btn  my_btn"
                         onclick="check()">Проверить</button>
@@ -182,7 +182,7 @@
                 </div>
             </div>
 
-            <div class="row" style="visibility: inherit;">
+            <div class="row">
                 <div class="col-md-4">
                     <table style="border: 1px solid black;"
                         class="table text-center caption-top thead-light table-striped" id="traceTable">
@@ -198,13 +198,13 @@
                     <img id="imageAlgorithm" width="60%">
                 </div>
             </div>
-            <div class="row" style="visibility: inherit;">
-                <div onclick="hideTableResults()" style="visibility: collapse;" id="tableResults"></div>
-            </div>
             <div class="position-fixed bottom-0 end-0 m-3">
                 <button id='btnCheck' class="btn btn-primary my_btn" onclick="next()">Далее</button>
                 <!--<button class="btn btn-primary my_btn" onclick="get_tests_results()">Get Data</button>-->
             </div>
+        </div>
+        <div class="row">
+            <div onclick="hideTableResults()" style="display: none;" id="tableResults"></div>
         </div>
     </div>
 

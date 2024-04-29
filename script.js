@@ -288,7 +288,7 @@ function get_tests_results() {
             const resultsDiv = document.getElementById('tableResults');
             resultsDiv.innerHTML = '';
             resultsDiv.appendChild(table);
-            document.getElementById('tableResults').style.visibility = 'visible';
+            document.getElementById('tableResults').style.display = 'block';
         })
         .catch(error => {
             console.error('Ошибка при получении данных из базы данных:', error);
@@ -321,7 +321,7 @@ function executeFunction() {
 }
 
 function hideTableResults() {
-    document.getElementById('tableResults').style.visibility = 'collapse';
+    document.getElementById('tableResults').style.display = 'none';
 }
 
 
@@ -426,8 +426,8 @@ async function startTask(element) {
             break;
     }
     init();
-    document.getElementById('selectView').style.visibility = "collapse";
-    document.getElementById('mainView').style.visibility = 'visible';
+    document.getElementById('selectView').style.display = 'none';
+    document.getElementById('mainView').style.display = 'block';
 }
 
 function getRandomInt(min, max) {
