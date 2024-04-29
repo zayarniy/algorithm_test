@@ -17,10 +17,6 @@ const targetPassword = 'qqwwee';
 
 
 function load() {
-    /*
-    document.getElementById('btnCheck').addEventListener('click', () => {
-        check();
-    });*/
     // Прослушиваем события нажатия клавиш
     comboboxInit();
     document.addEventListener('keydown', handlePasswordInput);
@@ -61,10 +57,15 @@ function init(next = true) {
                         name = name.value.trim().replace(/\s+/g, " ").split(' ');
                         lastName = name[0];
                         firstName = name[1];
+                        showMessage('Внимание', 'Данные сохраняются.<br>Не закрывайте окно', "warning");
                         sendJSONToDB();
+                        setTimeout(() => window.location.reload(), 5000);
                     };
+
                 })
+
             }
+            else window.location.reload();
         });
     }
 }
@@ -170,10 +171,6 @@ function sendJSONToDB() {
         percent: String(percents),
         testName: testName
     };
-    /*let infoResult =
-    {
-        lastName: 'zaaa'
-    }*/
     //console.log(infoResult);
     //console.log(JSON.stringify(infoResult))
     // отправляем данные на сервер с помощью fetch
@@ -216,37 +213,6 @@ function sendJSONToDB() {
 
 }
 
-/*
-function sendData() {
-    //const data = { name: 'Иван', age: 30 };
-    let infoResult = {
-        lastName: lastName, firstName: firstName,
-        startTime: String(timeStart),
-        finishTime: String(timeFinish),
-        ball: String(ball),
-        errors: String(errorsTotal),
-        scoreMaxTotal: String(scoreMaxTotal),
-        percent: String(percents),
-        testName: testName
-    };
-    console.log(infoResult)
-    fetch('https://inform.xn--80ahlrjqm6azc.xn--p1ai/algorithm_test/php/process_data.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(infoResult)
-    })
-        .then(response => response.text())
-        .then(result => {
-            // Обновляем содержимое элемента с id="result"
-            console.log(result);
-        })
-        .catch(error => {
-            console.error('Ошибка:', error);
-        });
-}
-*/
 
 //https://inform.xn--80ahlrjqm6azc.xn--p1ai/algorithm_test/php/get_tests_results.php
 
