@@ -57,7 +57,7 @@ function init(next = true) {
                         name = name.value.trim().replace(/\s+/g, " ").split(' ');
                         lastName = name[0];
                         firstName = name[1];
-                        showMessage('Внимание', 'Данные сохраняются.<br>Не закрывайте окно', "warning");
+                        showMessage('Внимание', 'Данные сохраняются.<br>Не закрывайте окно', "warning", false);
                         sendJSONToDB();
                         setTimeout(() => window.location.reload(), 5000);
                     };
@@ -107,16 +107,14 @@ function showResult(per) {
 }
 
 
-function showMessage(captionHTML = 'info', messageHTML, icon = 'info') {
+function showMessage(captionHTML = 'info', messageHTML, icon = 'info', showCloseButton = true, confirmButtonText = `Понял`) {
     return Swal.fire({
         title: captionHTML,
         icon: icon,
         html: messageHTML,
-        showCloseButton: true,
+        showCloseButton: showCloseButton,
         focusConfirm: false,
-        confirmButtonText: `
-           Понял
-        `
+        confirmButtonText: confirmButtonText
     });
 
 }
