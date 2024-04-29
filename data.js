@@ -345,11 +345,15 @@ function clearTable() {
 
 function createTable() {
     let table = document.getElementById('traceTable');
-    let rows = table.querySelectorAll('tr')
-    //console.log(rows);
-    if (rows != null)
-        rows.forEach(function (row) { table.removeChild(row) });
+    table.innerHTML = '';
+    let tbody = document.createElement('tbody');
 
+    // let rows = tbody.querySelectorAll('tr')
+    //console.log(rows);
+    // if (rows != null)
+    //     rows.forEach(function (row) { table.removeChild(row) });
+
+    table.appendChild(tbody)
 
     let row = document.createElement('tr');
     let cell = document.createElement('th');
@@ -362,7 +366,7 @@ function createTable() {
         cell.style.width = '60px'
         row.appendChild(cell)
     }
-    table.appendChild(row);
+    tbody.appendChild(row);
 
     for (i = 1; i < data.length; i++) {
 
@@ -381,6 +385,6 @@ function createTable() {
             cell.appendChild(inp);
             row.appendChild(cell)
         }
-        table.appendChild(row);
+        tbody.appendChild(row);
     }
 }    
