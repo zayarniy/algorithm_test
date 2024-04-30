@@ -5,7 +5,7 @@ let scoreTotal = 0;
 let errorsTotal = 0;
 let taskNumber = 0;
 let scoreMax = 0;
-let currentTask;
+let currentTask=0;
 let percents = 0;
 let scoreMaxTotal = 0;
 let timeStart = '', timeFinish = ''
@@ -22,57 +22,71 @@ function load() {
     document.addEventListener('keydown', handlePasswordInput);
     checkTimeStart();
     checkTimeFinish();
+    initTask();
 }
 
-function init(next = true) {
+function calculatePercent()
+{
+    return parseInt((scoreTotal - (errorsTotal>scoreMaxTotal?0:errorsTotal)) / (scoreMaxTotal==0?1:scoreMaxTotal) * 100);    
+}
 
-    if (taskNumber != taskQuery.length) {
-        currentTask = taskQuery[taskNumber];
-        if (next) {
-            taskNumber++;
-            scoreTotal += score;
-            scoreMaxTotal += scoreMax;
-        }
-        else {
-
-        }
-        score = 0;
-        tasks[currentTask].init();
-        //if (si != null) clearInterval(si);
-        //startCountdown(100);
-        infoUpdate();
-        createTable();
-    }
-    else {
-        checkTimeFinish();
-        percents = parseInt((scoreTotal - errorsTotal) / scoreMaxTotal * 100);
-        if (percents >= 90) ball = 5;
-        if (percents >= 80 && percents < 90) ball = 4;
-        if (percents >= 65 && percents < 80) ball = 3;
-        if (percents < 65) ball = 2;
-        showResult(percents).then((result) => {
-            if (result.isConfirmed) {
-                inputText("Сохранение", `Введите свое <strong>фамилию</strong> и <strong>имя</strong>:`, "Иванов Иван").then((name) => {
-                    if (name.value != "") {
-                        name = name.value.trim().replace(/\s+/g, " ").split(' ');
-                        lastName = name[0];
-                        firstName = name[1];
-                        showMessage('Внимание', 'Данные сохраняются.<br>Не закрывайте окно', "warning", false);
-                        sendJSONToDB();
-                        setTimeout(() => window.location.reload(), 5000);
-                    };
-
-                })
-
-            }
-            else window.location.reload();
-        });
-    }
+function renewTask()
+{
+    tasks[currentTask].init();
+    infoUpdate();
+    createTable();
 }
 
 
-function next() {
-    init();
+function initTask() 
+{
+    score = 0;
+    currentTask=0;
+    tasks[currentTask].init();
+    infoUpdate();
+    createTable();
+}
+
+function finish()
+{
+    checkTimeFinish();
+    percents = calculatePercent();
+    if (percents >= 90) ball = 5;
+    if (percents >= 80 && percents < 90) ball = 4;
+    if (percents >= 65 && percents < 80) ball = 3;
+    if (percents < 65) ball = 2;
+    showResult(percents).then((result) => {
+        if (result.isConfirmed) {
+            inputText("Сохранение", `Введите свое <strong>фамилию</strong> и <strong>имя</strong>:`, "Иванов Иван").then((name) => {
+                if (name.value != "") {
+                    name = name.value.trim().replace(/\s+/g, " ").split(' ');
+                    lastName = name[0];
+                    firstName = name[1];
+                    showMessage('Внимание', 'Данные сохраняются.<br>Не закрывайте окно', "warning", false);
+                    sendJSONToDB();
+                    setTimeout(() => window.location.reload(), 5000);
+                };
+
+            })
+
+        }
+        else window.location.reload();
+    });
+
+}
+
+function next() 
+{
+    ++taskNumber;    
+    if (taskNumber < taskQuery.length) 
+    {
+        currentTask = taskQuery[taskNumber];        
+        scoreTotal += score;
+        scoreMaxTotal += scoreMax;
+        renewTask();
+    }
+    else 
+        finish();
 }
 
 
@@ -135,10 +149,10 @@ function infoUpdate() {
     document.getElementById('scores').textContent = score;
     document.getElementById('scoresTotal').textContent = scoreTotal;
     document.getElementById('errorsTotal').textContent = errorsTotal;
-    document.getElementById('taskNumber').textContent = taskNumber;
+    document.getElementById('taskNumber').textContent = (taskNumber+1);
     document.getElementById('scoreMax').textContent = scoreMax;
     document.getElementById('tasksTotal').textContent = taskQuery.length;
-    document.getElementById('percent').textContent = parseInt((scoreTotal - errorsTotal) / (scoreMaxTotal == 0 ? 1 : scoreMaxTotal) * 100);
+    document.getElementById('percent').textContent =calculatePercent();
 }
 
 
@@ -389,7 +403,7 @@ async function startTask(element) {
             else return;
             break;
     }
-    init();
+    initTask();
     document.getElementById('selectView').style.display = 'none';
     document.getElementById('mainView').style.display = 'block';
 }
@@ -421,3 +435,61 @@ function startCountdown(countDown) {
     }
 }
 
+
+function clearTable() {
+    for (i = 1; i < data.length; i++) {
+        for (j = 0; j < data[i].length; j++) {
+            let el = document.getElementById(i + "" + j);
+            el.value = '';
+            el.style.backgroundColor = 'white';
+            //el.style=cellStyle;
+        }
+    }
+}
+
+
+function createTable() {
+    let table = document.getElementById('traceTable');
+    table.innerHTML = '';
+    let tbody = document.createElement('tbody');
+
+    // let rows = tbody.querySelectorAll('tr')
+    //console.log(rows);
+    // if (rows != null)
+    //     rows.forEach(function (row) { table.removeChild(row) });
+
+    table.appendChild(tbody)
+
+    let row = document.createElement('tr');
+    let cell = document.createElement('th');
+    cell.textContent = '№';
+    cell.style.width = '60px'
+    row.appendChild(cell)
+    for (j = 0; j < data[0].length; j++) {
+        let cell = document.createElement('th');
+        cell.textContent = data[0][j]
+        cell.style.width = '60px'
+        row.appendChild(cell)
+    }
+    tbody.appendChild(row);
+
+    for (i = 1; i < data.length; i++) {
+
+        let row = document.createElement('tr');
+        let cell = document.createElement('td');
+        cell.textContent = i;
+        row.appendChild(cell)
+
+        for (j = 0; j < data[i].length; j++) {
+            let cell = document.createElement('td');
+            let inp = document.createElement('input');
+            inp.autocomplete = 'off';
+            inp.id = i + "" + j;
+            inp.style = 'width:55px';
+            //inp.value = data[i][j];
+            cell.appendChild(inp);
+            row.appendChild(cell)
+        }
+        tbody.appendChild(row);
+    }
+}    
