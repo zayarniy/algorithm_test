@@ -149,7 +149,11 @@
                     </span><span id="scoreMax" class="info">0</span>
                 </div>
                 <div class="col">
-                    <span class="infoLabel">Ошибок</span><br><span style="color: #FFA100;" id="errorsTotal"
+                    <span class="infoLabel">Ошибок</span><br><span style="color: #FFA100;" id="errors"
+                        class="info">0</span>
+                </div>
+                <div class="col">
+                    <span class="infoLabel">Ошибок всего</span><br><span style="color: #FFA100;" id="errorsTotal"
                         class="info">0</span>
                 </div>
                 <div class="col">
@@ -167,7 +171,9 @@
                     <p><strong style="color:#FFA100;font-size: larger;">+</strong> -
                         условие истино,
                         <strong style="color: #FFA100; font-size: larger;">-</strong> -
-                        условие ложно
+                        условие ложно,
+                        <strong style="color: #FFA100; font-size: larger;">*</strong> -
+                        условие не обработано
                     </p>
                 </div>
             </div>
@@ -191,7 +197,7 @@
                     <button id='btnClearTable' class="btn my_btn" style="visibility:inherit;background-color: #FFA100;"
                         onclick="clearTable()">Очистить</button>
                     <button id="btnCheck" style="visibility:inherit;background-color: #FFA100;" class="btn my_btn"
-                        onclick="renewTask()">Обновить</button>
+                        onclick="renewTask()">Еще раз (<span id='countAttempt'></span>)</button>
 
                 </div>
                 <div class="col-md-8">

@@ -4,6 +4,7 @@ let si = null;
 let scoreTotal = 0;
 let errorsTotal = 0;
 let taskNumber = 0;
+let errors=0;
 let scoreMax = 0;
 let currentTask=0;
 let percents = 0;
@@ -12,6 +13,7 @@ let timeStart = '', timeFinish = ''
 let lastName = '', firstName = '';
 let ball = 0;
 let password = '';
+let countAttempt=2;
 const MAX_LENGTH = 6;
 const targetPassword = 'qqwwee';
 
@@ -32,9 +34,19 @@ function calculatePercent()
 
 function renewTask()
 {
+    if (countAttempt>0)
+    {
+    score = 0;
+    errors=0;
+    countAttempt--;
     tasks[currentTask].init();
     infoUpdate();
     createTable();
+
+    }
+    else{
+        showMessage('Внимание','Попытки закончились!','warning',false);
+    }
 }
 
 
@@ -42,6 +54,7 @@ function initTask()
 {
     score = 0;
     currentTask=0;
+    errors=0;
     tasks[currentTask].init();
     infoUpdate();
     createTable();
@@ -58,14 +71,15 @@ function finish()
     showResult(percents).then((result) => {
         if (result.isConfirmed) {
             inputText("Сохранение", `Введите свое <strong>фамилию</strong> и <strong>имя</strong>:`, "Иванов Иван").then((name) => {
-                if (name.value != "") {
+                if (name.isConfirmed && name.value != "") {
                     name = name.value.trim().replace(/\s+/g, " ").split(' ');
                     lastName = name[0];
                     firstName = name[1];
                     showMessage('Внимание', 'Данные сохраняются.<br>Не закрывайте окно', "warning", false);
                     sendJSONToDB();
                     setTimeout(() => window.location.reload(), 5000);
-                };
+                }
+                else window.location.reload();
 
             })
 
@@ -77,11 +91,13 @@ function finish()
 
 function next() 
 {
-    ++taskNumber;    
+    ++taskNumber;   
     if (taskNumber < taskQuery.length) 
     {
+        countAttempt=3;
         currentTask = taskQuery[taskNumber];        
         scoreTotal += score;
+        errorsTotal+=errors;
         scoreMaxTotal += scoreMax;
         renewTask();
     }
@@ -148,11 +164,13 @@ function inputText(title, html, inputPlaceholder) {
 function infoUpdate() {
     document.getElementById('scores').textContent = score;
     document.getElementById('scoresTotal').textContent = scoreTotal;
+    document.getElementById('errors').textContent = errors;
     document.getElementById('errorsTotal').textContent = errorsTotal;
     document.getElementById('taskNumber').textContent = (taskNumber+1);
     document.getElementById('scoreMax').textContent = scoreMax;
     document.getElementById('tasksTotal').textContent = taskQuery.length;
     document.getElementById('percent').textContent =calculatePercent();
+    document.getElementById('countAttempt').textContent=countAttempt;
 }
 
 

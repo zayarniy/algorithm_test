@@ -31,7 +31,7 @@ let tasks =
                 data[i][0] = m;
                 data[i][1] = n;
                 data[i][2] = m != n ? '+' : '-';
-                data[i][3] = m > n ? '+' : '-';
+                data[i][3] = '*';//m > n ? '+' : '-';
                 if (m > n) m = m - n; else n = n - m;
                 count += 4;
                 data.outputText = 'm';
@@ -136,7 +136,7 @@ let tasks =
                 data[i][0] = x;
                 data[i][1] = y;
                 data[i][2] = x < 30 ? '+' : '-';
-                data[i][3] = x >= y ? '+' : '-';
+                data[i][3] = '*';//x >= y ? '+' : '-';
                 count += data[i].length;
                 scoreMax = count;
             },
@@ -277,7 +277,7 @@ let tasks =
                 data[i][0] = x;
                 data[i][1] = y;
                 data[i][2] = y < 16 ? '+' : '-';
-                data[i][3] = x <= y ? '+' : '-';
+                data[i][3] = '*';//x <= y ? '+' : '-';
                 count += data[i].length;
                 scoreMax = count;
             },
@@ -327,7 +327,7 @@ function check(showAnswers = false) {
     }
     //score = (count == countGreen ? countGreen : 0);
     score = countGreen;
-    errorsTotal += countRed;
+    errors += countRed;
 
     infoUpdate();
 }
