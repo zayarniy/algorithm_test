@@ -24,7 +24,7 @@ function load() {
     document.addEventListener('keydown', handlePasswordInput);
     checkTimeStart();
     checkTimeFinish();
-    initTask();
+    //initTask();
 }
 
 function calculatePercent()
@@ -55,7 +55,7 @@ function initTask()
     score = 0;
     currentTask=0;
     errors=0;
-    tasks[currentTask].init();
+    tasks[taskQuery[currentTask]].init();
     infoUpdate();
     createTable();
 }
@@ -94,15 +94,20 @@ function next()
     ++taskNumber;   
     if (taskNumber < taskQuery.length) 
     {
-        countAttempt=3;
         currentTask = taskQuery[taskNumber];        
+        countAttempt=3;
         scoreTotal += score;
         errorsTotal+=errors;
         scoreMaxTotal += scoreMax;
         renewTask();
     }
     else 
+    {
+        scoreTotal += score;
+        errorsTotal+=errors;
+        scoreMaxTotal += scoreMax;
         finish();
+    }
 }
 
 
@@ -421,9 +426,9 @@ async function startTask(element) {
             else return;
             break;
     }
-    initTask();
     document.getElementById('selectView').style.display = 'none';
     document.getElementById('mainView').style.display = 'block';
+    initTask();
 }
 
 function getRandomInt(min, max) {

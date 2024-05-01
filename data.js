@@ -48,10 +48,12 @@ let tasks =
                 while (m == n);
                 this.task(data, m, n);
                 //console.log(r, m, n);
-                document.getElementById('imageAlgorithm').src = tasks[currentTask].imageAlgorithm
-                document.getElementById('textTask').innerHTML = tasks[currentTask].textTask;
+                document.getElementById('imageAlgorithm').src = tasks[taskQuery[taskNumber]].imageAlgorithm
+                document.getElementById('textTask').innerHTML = tasks[taskQuery[taskNumber]].textTask;
+                setTimeout(()=>{
                 document.getElementById('initM').textContent = m;
                 document.getElementById('initN').textContent = n;
+                },500);
                 //console.log(data);
             }
 
@@ -94,10 +96,12 @@ let tasks =
                 n = getRandomInt(2, 10);// getRandomInt(2, 21) * r;
                 this.task(data, m, n);
                 //console.log(r, m, n);
-                document.getElementById('imageAlgorithm').src = tasks[currentTask].imageAlgorithm
-                document.getElementById('textTask').innerHTML = tasks[currentTask].textTask;
+                document.getElementById('imageAlgorithm').src = tasks[taskQuery[taskNumber]].imageAlgorithm
+                document.getElementById('textTask').innerHTML = tasks[taskQuery[taskNumber]].textTask;
+                setTimeout(()=>{
                 document.getElementById('initM').textContent = m;
                 document.getElementById('initN').textContent = n;
+                },500);
                 //console.log(data);
             }
 
@@ -147,10 +151,12 @@ let tasks =
                 y = 35 + getRandomInt(0, 3) * 5;// getRandomInt(2, 21) * r;
                 this.task(data, x, y);
                 //console.log(r, m, n);
-                document.getElementById('imageAlgorithm').src = tasks[currentTask].imageAlgorithm
-                document.getElementById('textTask').innerHTML = tasks[currentTask].textTask;
+                document.getElementById('imageAlgorithm').src = tasks[taskQuery[taskNumber]].imageAlgorithm
+                document.getElementById('textTask').innerHTML = tasks[taskQuery[taskNumber]].textTask;
+                setTimeout(()=>{
                 document.getElementById('initX').textContent = x;
                 document.getElementById('initY').textContent = y;
+                },500);
                 //console.log(data);
             }
 
@@ -190,10 +196,11 @@ let tasks =
                 b = 2;// getRandomInt(2, 21) * r;
                 this.task(data, a, b);
                 //console.log(r, m, n);
-                document.getElementById('imageAlgorithm').src = tasks[currentTask].imageAlgorithm
-                document.getElementById('textTask').innerHTML = tasks[currentTask].textTask;
+                document.getElementById('imageAlgorithm').src = tasks[taskQuery[taskNumber]].imageAlgorithm
+                document.getElementById('textTask').innerHTML = tasks[taskQuery[taskNumber]].textTask;
+                setTimeout(()=>{
                 document.getElementById('initA').textContent = a;
-                document.getElementById('initB').textContent = b;
+                document.getElementById('initB').textContent = b;},500);
                 //console.log(data);
             }
 
@@ -235,10 +242,12 @@ let tasks =
                 b = 0;// getRandomInt(2, 21) * r;
                 this.task(data, a, b);
                 //console.log(r, m, n);
-                document.getElementById('imageAlgorithm').src = tasks[currentTask].imageAlgorithm
-                document.getElementById('textTask').innerHTML = tasks[currentTask].textTask;
+                document.getElementById('imageAlgorithm').src = tasks[taskQuery[taskNumber]].imageAlgorithm
+                document.getElementById('textTask').innerHTML = tasks[taskQuery[taskNumber]].textTask;
+                setTimeout(()=>{
                 document.getElementById('initA').textContent = a;
                 document.getElementById('initB').textContent = b;
+                },500);
                 //console.log(data);
             }
 
@@ -288,10 +297,12 @@ let tasks =
                 y = 15;// + getRandomInt(0, 3) * 5;// getRandomInt(2, 21) * r;
                 this.task(data, x, y);
                 //console.log(r, m, n);
-                document.getElementById('imageAlgorithm').src = tasks[currentTask].imageAlgorithm
-                document.getElementById('textTask').innerHTML = tasks[currentTask].textTask;
+                document.getElementById('imageAlgorithm').src = tasks[taskQuery[taskNumber]].imageAlgorithm
+                document.getElementById('textTask').innerHTML = tasks[taskQuery[taskNumber]].textTask;
+                setTimeout(()=>{
                 document.getElementById('initX').textContent = x;
                 document.getElementById('initY').textContent = y;
+                },500);
                 //console.log(data);
             }
 
