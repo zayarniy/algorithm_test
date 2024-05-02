@@ -50,10 +50,10 @@ let tasks =
                 //console.log(r, m, n);
                 document.getElementById('imageAlgorithm').src = tasks[taskQuery[taskNumber]].imageAlgorithm
                 document.getElementById('textTask').innerHTML = tasks[taskQuery[taskNumber]].textTask;
-                setTimeout(()=>{
-                document.getElementById('initM').textContent = m;
-                document.getElementById('initN').textContent = n;
-                },500);
+                setTimeout(() => {
+                    document.getElementById('initM').textContent = m;
+                    document.getElementById('initN').textContent = n;
+                }, 500);
                 //console.log(data);
             }
 
@@ -98,10 +98,10 @@ let tasks =
                 //console.log(r, m, n);
                 document.getElementById('imageAlgorithm').src = tasks[taskQuery[taskNumber]].imageAlgorithm
                 document.getElementById('textTask').innerHTML = tasks[taskQuery[taskNumber]].textTask;
-                setTimeout(()=>{
-                document.getElementById('initM').textContent = m;
-                document.getElementById('initN').textContent = n;
-                },500);
+                setTimeout(() => {
+                    document.getElementById('initM').textContent = m;
+                    document.getElementById('initN').textContent = n;
+                }, 500);
                 //console.log(data);
             }
 
@@ -153,10 +153,10 @@ let tasks =
                 //console.log(r, m, n);
                 document.getElementById('imageAlgorithm').src = tasks[taskQuery[taskNumber]].imageAlgorithm
                 document.getElementById('textTask').innerHTML = tasks[taskQuery[taskNumber]].textTask;
-                setTimeout(()=>{
-                document.getElementById('initX').textContent = x;
-                document.getElementById('initY').textContent = y;
-                },500);
+                setTimeout(() => {
+                    document.getElementById('initX').textContent = x;
+                    document.getElementById('initY').textContent = y;
+                }, 500);
                 //console.log(data);
             }
 
@@ -198,9 +198,10 @@ let tasks =
                 //console.log(r, m, n);
                 document.getElementById('imageAlgorithm').src = tasks[taskQuery[taskNumber]].imageAlgorithm
                 document.getElementById('textTask').innerHTML = tasks[taskQuery[taskNumber]].textTask;
-                setTimeout(()=>{
-                document.getElementById('initA').textContent = a;
-                document.getElementById('initB').textContent = b;},500);
+                setTimeout(() => {
+                    document.getElementById('initA').textContent = a;
+                    document.getElementById('initB').textContent = b;
+                }, 500);
                 //console.log(data);
             }
 
@@ -244,10 +245,10 @@ let tasks =
                 //console.log(r, m, n);
                 document.getElementById('imageAlgorithm').src = tasks[taskQuery[taskNumber]].imageAlgorithm
                 document.getElementById('textTask').innerHTML = tasks[taskQuery[taskNumber]].textTask;
-                setTimeout(()=>{
-                document.getElementById('initA').textContent = a;
-                document.getElementById('initB').textContent = b;
-                },500);
+                setTimeout(() => {
+                    document.getElementById('initA').textContent = a;
+                    document.getElementById('initB').textContent = b;
+                }, 500);
                 //console.log(data);
             }
 
@@ -299,10 +300,10 @@ let tasks =
                 //console.log(r, m, n);
                 document.getElementById('imageAlgorithm').src = tasks[taskQuery[taskNumber]].imageAlgorithm
                 document.getElementById('textTask').innerHTML = tasks[taskQuery[taskNumber]].textTask;
-                setTimeout(()=>{
-                document.getElementById('initX').textContent = x;
-                document.getElementById('initY').textContent = y;
-                },500);
+                setTimeout(() => {
+                    document.getElementById('initX').textContent = x;
+                    document.getElementById('initY').textContent = y;
+                }, 500);
                 //console.log(data);
             }
 
@@ -325,12 +326,13 @@ function check(showAnswers = false) {
                 if (el.value != '')
                     if (data[i][j] == el.value) {
                         //el.style.color = 'green';
-                        el.style.backgroundColor = '#0D6EFD';//lightgreen';
+                        //el.style.color = '#0D6EFD';//lightgreen';
+                        el.style.backgroundColor = '#0D6EFD';
                         countGreen++;
                     }
                     else {
                         //el.style.color = 'red';
-                        el.style.backgroundColor = '#FFA100';
+                        el.style.backgroundColor = '#FFCB00';//'#FFA100';
                         countRed++;
                     }
             }

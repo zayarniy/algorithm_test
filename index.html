@@ -10,6 +10,9 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="libs/Bootstrap v5.3.0/bootstrap.min.css" />-->
+    <!--link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">-->
     <!--
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 -->
@@ -21,13 +24,21 @@
 <body onload="load()">
     <div class="container-fluid">
         <div id="selectView" style="display: block;">
-            <table class="table text-center">
+            <h2>Блок-схемы. Таблицы трассировки</h2>
+            <table class="table text-center  table-striped  align-middle">
                 <tr>
-                    <th>№</th>
-                    <th>Описание</th>
-                    <th>Количество<br>заданий</th>
-                    <th>Запуск</th>
+                    <thead class="table-light  align-middle">
+                        <th>№</th>
+                        <th>Описание</th>
+                        <th>Количество<br>заданий</th>
+                        <th>Запуск</th>
+                    </thead>
                 </tr>
+                <thead class="table-primary  align-middle">
+                    <tr>
+                        <td colspan="4">Контрольная работа</td>
+                    </tr>
+                </thead>
                 <tr>
                     <td>1</td>
                     <td>Стандартное. 6 заданий</td>
@@ -36,10 +47,16 @@
                 </tr>
                 <tr>
                     <td>2</td>
-                    <td>Стандартное. Основные задания по два раза</td>
+                    <td>Повышенной сложности. 12 заданий. Все задания по два раза</td>
                     <td>12</td>
                     <td><button class="btn btn-primary" id="task02" onclick="startTask(this)">Пуск</button></td>
                 </tr>
+                <thead class="table-primary  align-middle">
+                    <tr>
+                        <td colspan="4">Тренировка</td>
+                    </tr>
+                </thead>
+                <!--
                 <tr>
                     <td>3</td>
                     <td>Первое задание. 5 повторений</td>
@@ -75,45 +92,45 @@
                     <td>Шестое задание. 5 повторений</td>
                     <td>5</td>
                     <td><button class="btn btn-primary" id="task08" onclick="startTask(this)">Пуск</button></td>
-                </tr>
+                </tr>-->
                 <tr>
-                    <td>9</td>
+                    <td>3</td>
                     <td>Первое задание. 3 повторения</td>
                     <td>3</td>
                     <td><button class="btn btn-primary" id="task09" onclick="startTask(this)">Пуск</button></td>
                 </tr>
                 <tr>
-                    <td>10</td>
+                    <td>4</td>
                     <td>Второе задание. 3 повторения</td>
                     <td>3</td>
                     <td><button class="btn btn-primary" id="task10" onclick="startTask(this)">Пуск</button></td>
                 </tr>
                 <tr>
-                    <td>11</td>
+                    <td>5</td>
                     <td>Третье задание. 3 повторения</td>
                     <td>3</td>
                     <td><button class="btn btn-primary" id="task11" onclick="startTask(this)">Пуск</button></td>
                 </tr>
                 <tr>
-                    <td>12</td>
+                    <td>6</td>
                     <td>Четвертое задание. 3 повторения</td>
                     <td>3</td>
                     <td><button class="btn btn-primary" id="task12" onclick="startTask(this)">Пуск</button></td>
                 </tr>
                 <tr>
-                    <td>13</td>
+                    <td>7</td>
                     <td>Пятое задание. 3 повторения</td>
                     <td>3</td>
                     <td><button class="btn btn-primary" id="task13" onclick="startTask(this)">Пуск</button></td>
                 </tr>
                 <tr>
-                    <td>14</td>
+                    <td>8</td>
                     <td>Шестое задание. 3 повторения</td>
                     <td>3</td>
                     <td><button class="btn btn-primary" id="task14" onclick="startTask(this)">Пуск</button></td>
                 </tr>
                 <tr>
-                    <td>15</td>
+                    <td>9</td>
                     <td>Случайные задания</td>
                     <td> <input type="text" id="combobox-input" value="5">
                         <select id="combobox-select">
@@ -129,7 +146,7 @@
                     <td><button class="btn btn-primary" id="task15" onclick="startTask(this)">Пуск</button></td>
                 </tr>
                 <tr>
-                    <td>16</td>
+                    <td>10</td>
                     <td>Ввести задания</td>
                     <td>Выбор</td>
                     <td><button class="btn btn-primary" id="task16" onclick="startTask(this)">Пуск</button></td>
@@ -138,53 +155,80 @@
 
         </div>
         <div id="mainView" style="display: none;">
-            <div class="row top_panel">
+            <div class="row lh-1 text-center align-middle" style="color:black">
+                <table class="table">
+                    <tr>
+                        <td class="infoLabel">Задание:</td>
+                        <td class="infoLabel">Баллов:</td>
+                        <td class="infoLabel">Ошибок:</td>
+                        <td class="infoLabel">Ошибок всего:</td>
+                        <td class="infoLabel">Баллов всего:</td>
+                        <td class="infoLabel">Выполнено:</td>
+                    </tr>
+                    <tr class="info">
+                        <td><span id="taskNumber">0</span><span class="infoLabel"> из
+                            </span><span id="tasksTotal" class="info"></span>
+                        </td>
+                        <td><span id="scores">0</span><span class="infoLabel"> из
+                            </span><span id="scoreMax" class="info">0</span></td>
+                        <td><span id="errors">0</span></td>
+                        <td><span id="errorsTotal">0</span>
+                        </td>
+                        <td><span id="scoresTotal">0</span>
+                        </td>
+                        <td><span id="percent">0</span><span class="infoLabel">%</span></td>
+
+                    </tr>
+                </table>
+
+                <!--
                 <div class="col">
-                    <span class="infoLabel">Номер задания</span><br><span id="taskNumber" class="info">0</span><span> из
+                    <span class="infoLabel">Задание:</span><br><span id="taskNumber" class="info">0</span><span
+                        class="infoLabel"> из
                     </span><span id="tasksTotal" class="info"></span>
                 </div>
 
                 <div class="col">
-                    <span class="infoLabel">Баллов за задание</span><br><span id="scores" class="info">0</span><span> из
+                    <span class="infoLabel">Баллов:</span><br><span id="scores" class="info">0</span><span
+                        class="infoLabel"> из
                     </span><span id="scoreMax" class="info">0</span>
                 </div>
                 <div class="col">
-                    <span class="infoLabel">Ошибок</span><br><span style="color: #FFA100;" id="errors"
-                        class="info">0</span>
+                    <span class="infoLabel">Ошибок:</span><br><span id="errors" class="info">0</span>
                 </div>
                 <div class="col">
-                    <span class="infoLabel">Ошибок всего</span><br><span style="color: #FFA100;" id="errorsTotal"
-                        class="info">0</span>
+                    <span class="infoLabel">Ошибок всего:</span><br><span id="errorsTotal" class="info">0</span>
                 </div>
                 <div class="col">
-                    <span class="infoLabel">Баллов всего</span><br><span id="scoresTotal" class="info">0</span>
+                    <span class="infoLabel">Баллов всего:</span><br><span id="scoresTotal" class="info">0</span>
                 </div>
                 <div class="col">
-                    <span class="infoLabel">Процент выполнения:</span><br><span id="percent" class="info">0</span>
-                </div>
+                    <span class="infoLabel">Выполнено:</span><br><span id="percent" class="info">0</span><span
+                        class="infoLabel">%</span>
+                </div>-->
             </div>
 
             <div class="row justify-content-center">
                 <div class="col-12">
-                    <h2>Таблицы трассировки. Анализ блок-схем</h2>
+
                     <p id="textTask"></p>
-                    <p><strong style="color:#FFA100;font-size: larger;">+</strong> -
+                    <p><strong style="color:#FFCB00;font-size: larger;">+</strong> -
                         условие истино,
-                        <strong style="color: #FFA100; font-size: larger;">-</strong> -
+                        <strong style="color: #FFCB00; font-size: larger;">-</strong> -
                         условие ложно,
-                        <strong style="color: #FFA100; font-size: larger;">*</strong> -
+                        <strong style="color: #FFCB00; font-size: larger;">*</strong> -
                         условие не обработано
                     </p>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    <button id="btnCheck" style="visibility:inherit;background-color: #FFA100;" class="btn  my_btn"
+                    <button id="btnCheck" style="visibility:inherit;background-color: #FFCB00;" class="btn  my_btn"
                         onclick="check()">Проверить</button>
                     <div style="display: inline-block;width: 15px;height: 15px;background-color:#0D6EFD;"></div> <strong
                         style="color:#0D6EFD">Верно</strong>
-                    <div style="display: inline-block;width: 15px;height: 15px;background-color:#FFA100;"></div><strong
-                        style="color: #FFA100;">Неверно</strong>
+                    <div style="display: inline-block;width: 15px;height: 15px;background-color:#FFCB00;"></div><strong
+                        style="color: #FFCB00;">Неверно</strong>
                 </div>
             </div>
 
@@ -194,9 +238,9 @@
                         class="table text-center caption-top thead-light table-striped" id="traceTable">
                         <caption>Таблица трассировки</caption>
                     </table>
-                    <button id='btnClearTable' class="btn my_btn" style="visibility:inherit;background-color: #FFA100;"
+                    <button id='btnClearTable' class="btn my_btn" style="visibility:inherit;background-color: #FFCB00;"
                         onclick="clearTable()">Очистить</button>
-                    <button id="btnCheck" style="visibility:inherit;background-color: #FFA100;" class="btn my_btn"
+                    <button id="btnCheck" style="visibility:inherit;background-color: #FFCB00;" class="btn my_btn"
                         onclick="renewTask()">Еще раз (<span id='countAttempt'></span>)</button>
 
                 </div>
@@ -215,6 +259,10 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!--<script src="libs/Bootstrap v5.3.0/bootstrap.bundle.min.js"></script>-->
+    <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>-->
 
 </body>
 

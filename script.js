@@ -4,16 +4,16 @@ let si = null;
 let scoreTotal = 0;
 let errorsTotal = 0;
 let taskNumber = 0;
-let errors=0;
+let errors = 0;
 let scoreMax = 0;
-let currentTask=0;
+let currentTask = 0;
 let percents = 0;
 let scoreMaxTotal = 0;
 let timeStart = '', timeFinish = ''
 let lastName = '', firstName = '';
 let ball = 0;
 let password = '';
-let countAttempt=2;
+let countAttempt = 2;
 const MAX_LENGTH = 6;
 const targetPassword = 'qqwwee';
 
@@ -27,41 +27,36 @@ function load() {
     //initTask();
 }
 
-function calculatePercent()
-{
-    return parseInt((scoreTotal - (errorsTotal>scoreMaxTotal?0:errorsTotal)) / (scoreMaxTotal==0?1:scoreMaxTotal) * 100);    
+function calculatePercent() {
+    return parseInt((scoreTotal - (errorsTotal > scoreMaxTotal ? 0 : errorsTotal)) / (scoreMaxTotal == 0 ? 1 : scoreMaxTotal) * 100);
 }
 
-function renewTask()
-{
-    if (countAttempt>0)
-    {
-    score = 0;
-    errors=0;
-    countAttempt--;
-    tasks[currentTask].init();
-    infoUpdate();
-    createTable();
+function renewTask() {
+    if (countAttempt > 0) {
+        score = 0;
+        errors = 0;
+        countAttempt--;
+        tasks[currentTask].init();
+        infoUpdate();
+        createTable();
 
     }
-    else{
-        showMessage('Внимание','Попытки закончились!','warning',false);
+    else {
+        showMessage('Внимание', 'Попытки закончились!', 'warning', false);
     }
 }
 
 
-function initTask() 
-{
+function initTask() {
     score = 0;
-    currentTask=0;
-    errors=0;
+    currentTask = 0;
+    errors = 0;
     tasks[taskQuery[currentTask]].init();
     infoUpdate();
     createTable();
 }
 
-function finish()
-{
+function finish() {
     checkTimeFinish();
     percents = calculatePercent();
     if (percents >= 90) ball = 5;
@@ -89,22 +84,19 @@ function finish()
 
 }
 
-function next() 
-{
-    ++taskNumber;   
-    if (taskNumber < taskQuery.length) 
-    {
-        currentTask = taskQuery[taskNumber];        
-        countAttempt=3;
+function next() {
+    ++taskNumber;
+    if (taskNumber < taskQuery.length) {
+        currentTask = taskQuery[taskNumber];
+        countAttempt = 3;
         scoreTotal += score;
-        errorsTotal+=errors;
+        errorsTotal += errors;
         scoreMaxTotal += scoreMax;
         renewTask();
     }
-    else 
-    {
+    else {
         scoreTotal += score;
-        errorsTotal+=errors;
+        errorsTotal += errors;
         scoreMaxTotal += scoreMax;
         finish();
     }
@@ -171,11 +163,11 @@ function infoUpdate() {
     document.getElementById('scoresTotal').textContent = scoreTotal;
     document.getElementById('errors').textContent = errors;
     document.getElementById('errorsTotal').textContent = errorsTotal;
-    document.getElementById('taskNumber').textContent = (taskNumber+1);
+    document.getElementById('taskNumber').textContent = (taskNumber + 1);
     document.getElementById('scoreMax').textContent = scoreMax;
     document.getElementById('tasksTotal').textContent = taskQuery.length;
-    document.getElementById('percent').textContent =calculatePercent();
-    document.getElementById('countAttempt').textContent=countAttempt;
+    document.getElementById('percent').textContent = calculatePercent();
+    document.getElementById('countAttempt').textContent = countAttempt;
 }
 
 
@@ -226,7 +218,7 @@ function sendJSONToDB() {
                 return response.text();
             } else {
                 // если возникла ошибка, выводим сообщение об ошибке
-                console.log("Error to DB!");
+                console.log("Error saved to DB!");
                 console.log(response.statusText)
                 console.log(response);
 
@@ -238,7 +230,7 @@ function sendJSONToDB() {
 
         .catch(error => {
             // если произошла ошибка при отправке, выводим сообщение об ошибке
-            console.log("Error to DB");
+            console.log("Error send data to DB");
             console.log(error)
             console.log(error.name)
             console.log(error.message)
@@ -465,6 +457,7 @@ function clearTable() {
             let el = document.getElementById(i + "" + j);
             el.value = '';
             el.style.backgroundColor = 'white';
+            //el.style.color = 'black';
             //el.style=cellStyle;
         }
     }
@@ -495,11 +488,11 @@ function createTable() {
         row.appendChild(cell)
     }
     tbody.appendChild(row);
-
+    //let cell;
     for (i = 1; i < data.length; i++) {
 
         let row = document.createElement('tr');
-        let cell = document.createElement('td');
+        cell = document.createElement('td');
         cell.textContent = i;
         row.appendChild(cell)
 
@@ -514,5 +507,7 @@ function createTable() {
             row.appendChild(cell)
         }
         tbody.appendChild(row);
+        //let computedStyle = window.getComputedStyle(cell);
+        //console.log(computedStyle)
     }
 }    

@@ -5,12 +5,13 @@ body {
 
 .infoLabel {
     font-style: italic;
+    font-size: small;
 
 }
 
 .info {
-    font-size: larger;
-    ;
+    font-size: small;
+
 }
 
 .nav_panel {
