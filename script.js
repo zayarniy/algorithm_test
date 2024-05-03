@@ -22,8 +22,6 @@ function load() {
     // Прослушиваем события нажатия клавиш
     comboboxInit();
     document.addEventListener('keydown', handlePasswordInput);
-    checkTimeStart();
-    checkTimeFinish();
     //initTask();
 }
 
@@ -54,9 +52,29 @@ function initTask() {
     tasks[taskQuery[taskNumber]].init();
     infoUpdate();
     createTable();
+    checkTimeStart();
+    checkTimeFinish();
+    timerStart();
+}
+
+function timerStart() {
+    si = setInterval(tick, 1000);
+}
+
+function tick() {
+    let diffInMilliseconds = new Date() - timeStart;
+
+
+
+    // Преобразуем миллисекунды в часы, минуты и секунды
+    let hours = String(Math.floor(diffInMilliseconds / (1000 * 60 * 60))).padStart(2, '0');
+    let minutes = String(Math.floor((diffInMilliseconds % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+    let seconds = String(Math.floor((diffInMilliseconds % (1000 * 60)) / 1000)).padStart(2, '0');
+    document.getElementById('durationTime').innerHTML = `${hours}:${minutes}:${seconds}`;
 }
 
 function finish() {
+    clearInterval(si);
     checkTimeFinish();
     percents = calculatePercent();
     if (percents >= 90) ball = 5;
@@ -467,6 +485,10 @@ function clearTable() {
 function createTable() {
     let table = document.getElementById('traceTable');
     table.innerHTML = '';
+    let tableCaption = document.createElement('caption')
+    tableCaption.textContent = "Таблица трассировки"
+    tableCaption.classList.add('text-center')
+    table.appendChild(tableCaption)
     let tbody = document.createElement('tbody');
 
     // let rows = tbody.querySelectorAll('tr')

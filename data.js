@@ -7,7 +7,7 @@ let color2 = '';
 let tasks =
     [
         {
-            textTask: 'Проанализируйте алгоритм и заполните таблицу трассировки при m=<span id="initM"></span>, n=<span id="initN"></span>',
+            textTask: 'Проанализируйте алгоритм в виде блок-схемы и заполните таблицу трассировки при m=<span id="initM"></span>, n=<span id="initN"></span>',
             imageAlgorithm: 'algorithms/001.svg',
             task: function (data, m, n) {
                 //Инициализация
@@ -52,12 +52,10 @@ let tasks =
                 //console.log(r, m, n);
                 document.getElementById('imageAlgorithm').src = tasks[taskQuery[taskNumber]].imageAlgorithm
                 document.getElementById('textTask').innerHTML = tasks[taskQuery[taskNumber]].textTask;
-                setTimeout(() => {
-                    document.getElementById('initM').textContent = m;
-                    document.getElementById('initM').style.color = color1;
-                    document.getElementById('initN').textContent = n;
-                    document.getElementById('initN').style.color = color1;
-                }, 500);
+                document.getElementById('initM').textContent = m;
+                //document.getElementById('initM').style.color = color1;
+                document.getElementById('initN').textContent = n;
+                //document.getElementById('initN').style.color = color1;
                 //console.log(data);
             }
 
@@ -102,10 +100,8 @@ let tasks =
                 //console.log(r, m, n);
                 document.getElementById('imageAlgorithm').src = tasks[taskQuery[taskNumber]].imageAlgorithm
                 document.getElementById('textTask').innerHTML = tasks[taskQuery[taskNumber]].textTask;
-                setTimeout(() => {
-                    document.getElementById('initM').textContent = m;
-                    document.getElementById('initN').textContent = n;
-                }, 500);
+                document.getElementById('initM').textContent = m;
+                document.getElementById('initN').textContent = n;
                 //console.log(data);
             }
 
@@ -157,10 +153,8 @@ let tasks =
                 //console.log(r, m, n);
                 document.getElementById('imageAlgorithm').src = tasks[taskQuery[taskNumber]].imageAlgorithm
                 document.getElementById('textTask').innerHTML = tasks[taskQuery[taskNumber]].textTask;
-                setTimeout(() => {
-                    document.getElementById('initX').textContent = x;
-                    document.getElementById('initY').textContent = y;
-                }, 500);
+                document.getElementById('initX').textContent = x;
+                document.getElementById('initY').textContent = y;
                 //console.log(data);
             }
 
@@ -202,10 +196,8 @@ let tasks =
                 //console.log(r, m, n);
                 document.getElementById('imageAlgorithm').src = tasks[taskQuery[taskNumber]].imageAlgorithm
                 document.getElementById('textTask').innerHTML = tasks[taskQuery[taskNumber]].textTask;
-                setTimeout(() => {
-                    document.getElementById('initA').textContent = a;
-                    document.getElementById('initB').textContent = b;
-                }, 500);
+                document.getElementById('initA').textContent = a;
+                document.getElementById('initB').textContent = b;
                 //console.log(data);
             }
 
@@ -249,10 +241,8 @@ let tasks =
                 //console.log(r, m, n);
                 document.getElementById('imageAlgorithm').src = tasks[taskQuery[taskNumber]].imageAlgorithm
                 document.getElementById('textTask').innerHTML = tasks[taskQuery[taskNumber]].textTask;
-                setTimeout(() => {
-                    document.getElementById('initA').textContent = a;
-                    document.getElementById('initB').textContent = b;
-                }, 500);
+                document.getElementById('initA').textContent = a;
+                document.getElementById('initB').textContent = b;
                 //console.log(data);
             }
 
@@ -304,11 +294,8 @@ let tasks =
                 //console.log(r, m, n);
                 document.getElementById('imageAlgorithm').src = tasks[taskQuery[taskNumber]].imageAlgorithm
                 document.getElementById('textTask').innerHTML = tasks[taskQuery[taskNumber]].textTask;
-                setTimeout(() => {
-                    document.getElementById('initX').textContent = x;
-
-                    document.getElementById('initY').textContent = y;
-                }, 500);
+                document.getElementById('initX').textContent = x;
+                document.getElementById('initY').textContent = y;
                 //console.log(data);
             }
 

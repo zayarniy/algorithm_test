@@ -180,32 +180,6 @@
 
                     </tr>
                 </table>
-
-                <!--
-                <div class="col">
-                    <span class="infoLabel">Задание:</span><br><span id="taskNumber" class="info">0</span><span
-                        class="infoLabel"> из
-                    </span><span id="tasksTotal" class="info"></span>
-                </div>
-
-                <div class="col">
-                    <span class="infoLabel">Баллов:</span><br><span id="scores" class="info">0</span><span
-                        class="infoLabel"> из
-                    </span><span id="scoreMax" class="info">0</span>
-                </div>
-                <div class="col">
-                    <span class="infoLabel">Ошибок:</span><br><span id="errors" class="info">0</span>
-                </div>
-                <div class="col">
-                    <span class="infoLabel">Ошибок всего:</span><br><span id="errorsTotal" class="info">0</span>
-                </div>
-                <div class="col">
-                    <span class="infoLabel">Баллов всего:</span><br><span id="scoresTotal" class="info">0</span>
-                </div>
-                <div class="col">
-                    <span class="infoLabel">Выполнено:</span><br><span id="percent" class="info">0</span><span
-                        class="infoLabel">%</span>
-                </div>-->
             </div>
 
             <div class="row justify-content-center">
@@ -229,14 +203,15 @@
                         style="color:#0D6EFD">Верно</strong>
                     <div style="display: inline-block;width: 15px;height: 15px;background-color:#FFCB00;"></div><strong
                         style="color: #FFCB00;">Неверно</strong>
+                    <div style="margin-top: 10px; float: right; color: #0D6EFD;" id="durationTime"></div>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-4">
                     <table style="border: 1px solid black;"
-                        class="table text-center caption-top thead-light table-striped" id="traceTable">
-                        <caption>Таблица трассировки</caption>
+                        class="table text-center caption-bottom thead-light table-striped" id="traceTable">
+
                     </table>
                     <button id='btnClearTable' class="btn my_btn" style="visibility:inherit;background-color: #FFCB00;"
                         onclick="clearTable()">Очистить</button>
@@ -244,8 +219,10 @@
                         onclick="renewTask()">Еще раз (<span id='countAttempt'></span>)</button>
 
                 </div>
-                <div class="col-md-8" style="border: 1px solid black;">
-                    <img id="imageAlgorithm" width="60%" class="mx-auto d-block">
+                <div class="col-md-8">
+                    <img id="imageAlgorithm" width="60%" style="border: 1px solid black;padding: 5px;"
+                        class="mx-auto d-block">
+
                 </div>
             </div>
             <div class="position-fixed bottom-0 end-0 m-3">
