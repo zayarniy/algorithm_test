@@ -6,7 +6,7 @@ let errorsTotal = 0;
 let taskNumber = 0;
 let errors = 0;
 let scoreMax = 0;
-let currentTask = 0;
+//let currentTask = 0;
 let percents = 0;
 let scoreMaxTotal = 0;
 let timeStart = '', timeFinish = ''
@@ -36,7 +36,7 @@ function renewTask() {
         score = 0;
         errors = 0;
         countAttempt--;
-        tasks[currentTask].init();
+        tasks[taskQuery[taskNumber]].init();
         infoUpdate();
         createTable();
 
@@ -49,9 +49,9 @@ function renewTask() {
 
 function initTask() {
     score = 0;
-    currentTask = 0;
+    //currentTask = 0;
     errors = 0;
-    tasks[taskQuery[currentTask]].init();
+    tasks[taskQuery[taskNumber]].init();
     infoUpdate();
     createTable();
 }
@@ -87,7 +87,7 @@ function finish() {
 function next() {
     ++taskNumber;
     if (taskNumber < taskQuery.length) {
-        currentTask = taskQuery[taskNumber];
+        //currentTask = taskQuery[taskNumber];
         countAttempt = 3;
         scoreTotal += score;
         errorsTotal += errors;
