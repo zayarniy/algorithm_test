@@ -1,6 +1,8 @@
 let data;
 let taskQuery = [0, 1, 2, 3, 4, 5];
 //let taskQuery = [0, 1];
+let color1 = '#FFCB00';
+let color2 = '';
 
 let tasks =
     [
@@ -52,7 +54,9 @@ let tasks =
                 document.getElementById('textTask').innerHTML = tasks[taskQuery[taskNumber]].textTask;
                 setTimeout(() => {
                     document.getElementById('initM').textContent = m;
+                    document.getElementById('initM').style.color = color1;
                     document.getElementById('initN').textContent = n;
+                    document.getElementById('initN').style.color = color1;
                 }, 500);
                 //console.log(data);
             }
@@ -302,6 +306,7 @@ let tasks =
                 document.getElementById('textTask').innerHTML = tasks[taskQuery[taskNumber]].textTask;
                 setTimeout(() => {
                     document.getElementById('initX').textContent = x;
+
                     document.getElementById('initY').textContent = y;
                 }, 500);
                 //console.log(data);
