@@ -62,15 +62,18 @@ function timerStart() {
 }
 
 function tick() {
+    document.getElementById('durationTime').innerHTML =getDurationTime();
+}
+
+function getDurationTime()
+{
     let diffInMilliseconds = new Date() - timeStart;
-
-
-
     // Преобразуем миллисекунды в часы, минуты и секунды
     let hours = String(Math.floor(diffInMilliseconds / (1000 * 60 * 60))).padStart(2, '0');
     let minutes = String(Math.floor((diffInMilliseconds % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
     let seconds = String(Math.floor((diffInMilliseconds % (1000 * 60)) / 1000)).padStart(2, '0');
-    document.getElementById('durationTime').innerHTML = `${hours}:${minutes}:${seconds}`;
+    return `${hours}:${minutes}:${seconds}`;
+
 }
 
 function finish() {
@@ -137,6 +140,9 @@ function showResult(per) {
         </div>
         <div>
             <span>Оценка:</span><span>${(ball)}</span>
+        </div>
+        <div>
+        <span>Продолжительность:</span><span>${(getDurationTime())}</span>
         </div>
 
         `,
