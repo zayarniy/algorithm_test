@@ -35,6 +35,8 @@ function renewTask() {
         errors = 0;
         countAttempt--;
         tasks[taskQuery[taskNumber]].init();
+        document.getElementById('colImageAlgorithm').style.display='block';
+        document.getElementById('colCodeAlgorithm').style.display='none';
         infoUpdate();
         createTable();
 
@@ -541,3 +543,18 @@ function createTable() {
         //console.log(computedStyle)
     }
 }    
+
+
+function switchBlock(){
+    console.log(document.getElementById('colImageAlgorithm').style.display)
+    if (document.getElementById('colImageAlgorithm').style.display=='none')
+    {
+        document.getElementById('colImageAlgorithm').style.display='block';
+        document.getElementById('colCodeAlgorithm').style.display='none';
+    }
+    else
+    {
+        document.getElementById('colImageAlgorithm').style.display='none';
+        document.getElementById('colCodeAlgorithm').style.display='block';
+    }
+}
