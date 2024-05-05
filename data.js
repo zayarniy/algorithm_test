@@ -62,9 +62,9 @@ let tasks =
                 while (m == n);
                 this.task(data, m, n);
                 //console.log(r, m, n);
-                document.getElementById('imageAlgorithm').src = tasks[taskQuery[taskNumber]].imageAlgorithm
+                document.getElementById('imageAlgorithm').src = this.imageAlgorithm
                 document.getElementById('colCodeAlgorithm').innerHTML=this.textCode;
-                document.getElementById('textTask').innerHTML = tasks[taskQuery[taskNumber]].textTask;
+                document.getElementById('textTask').innerHTML = this.textTask;
                 document.getElementById('initM').textContent = m;
                 //document.getElementById('initM').style.color = color1;
                 document.getElementById('initN').textContent = n;
@@ -122,9 +122,9 @@ let tasks =
                 n = getRandomInt(2, 10);// getRandomInt(2, 21) * r;
                 this.task(data, m, n);
                 //console.log(r, m, n);
-                document.getElementById('imageAlgorithm').src = tasks[taskQuery[taskNumber]].imageAlgorithm
+                document.getElementById('imageAlgorithm').src = this.imageAlgorithm
                 document.getElementById('colCodeAlgorithm').innerHTML=this.textCode;
-                document.getElementById('textTask').innerHTML = tasks[taskQuery[taskNumber]].textTask;
+                document.getElementById('textTask').innerHTML = this.textTask;
                 document.getElementById('initM').textContent = m;
                 document.getElementById('initN').textContent = n;
                 //console.log(data);
@@ -190,9 +190,9 @@ let tasks =
                 y = 35 + getRandomInt(0, 3) * 5;// getRandomInt(2, 21) * r;
                 this.task(data, x, y);
                 //console.log(r, m, n);
-                document.getElementById('imageAlgorithm').src = tasks[taskQuery[taskNumber]].imageAlgorithm
+                document.getElementById('imageAlgorithm').src = this.imageAlgorithm
                 document.getElementById('colCodeAlgorithm').innerHTML=this.textCode;
-                document.getElementById('textTask').innerHTML = tasks[taskQuery[taskNumber]].textTask;
+                document.getElementById('textTask').innerHTML = this.textTask;
                 document.getElementById('initX').textContent = x;
                 document.getElementById('initY').textContent = y;
                 //console.log(data);
@@ -244,9 +244,9 @@ let tasks =
                 b = 2;// getRandomInt(2, 21) * r;
                 this.task(data, a, b);
                 //console.log(r, m, n);
-                document.getElementById('imageAlgorithm').src = tasks[taskQuery[taskNumber]].imageAlgorithm
+                document.getElementById('imageAlgorithm').src = this.imageAlgorithm
                 document.getElementById('colCodeAlgorithm').innerHTML=this.textCode;
-                document.getElementById('textTask').innerHTML = tasks[taskQuery[taskNumber]].textTask;
+                document.getElementById('textTask').innerHTML = this.textTask;
                 document.getElementById('initA').textContent = a;
                 document.getElementById('initB').textContent = b;
                 //console.log(data);
@@ -300,9 +300,9 @@ let tasks =
                 b = 0;// getRandomInt(2, 21) * r;
                 this.task(data, a, b);
                 //console.log(r, m, n);
-                document.getElementById('imageAlgorithm').src = tasks[taskQuery[taskNumber]].imageAlgorithm
+                document.getElementById('imageAlgorithm').src = this.imageAlgorithm
                 document.getElementById('colCodeAlgorithm').innerHTML=this.textCode;
-                document.getElementById('textTask').innerHTML = tasks[taskQuery[taskNumber]].textTask;
+                document.getElementById('textTask').innerHTML = this.textTask;
                 document.getElementById('initA').textContent = a;
                 document.getElementById('initB').textContent = b;
                 //console.log(data);
@@ -368,9 +368,9 @@ let tasks =
                 y = 15;// + getRandomInt(0, 3) * 5;// getRandomInt(2, 21) * r;
                 this.task(data, x, y);
                 //console.log(r, m, n);
-                document.getElementById('imageAlgorithm').src = tasks[taskQuery[taskNumber]].imageAlgorithm
+                document.getElementById('imageAlgorithm').src = this.imageAlgorithm
                 document.getElementById('colCodeAlgorithm').innerHTML=this.textCode;
-                document.getElementById('textTask').innerHTML = tasks[taskQuery[taskNumber]].textTask;
+                document.getElementById('textTask').innerHTML = this.textTask;
                 document.getElementById('initX').textContent = x;
                 document.getElementById('initY').textContent = y;
                 //console.log(data);

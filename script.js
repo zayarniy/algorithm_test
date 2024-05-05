@@ -511,12 +511,12 @@ function createTable() {
     let row = document.createElement('tr');
     let cell = document.createElement('th');
     cell.textContent = '№';
-    cell.style.width = '60px'
+    cell.style.width = '40px'
     row.appendChild(cell)
     for (j = 0; j < data[0].length; j++) {
         let cell = document.createElement('th');
         cell.textContent = data[0][j]
-        cell.style.width = '60px'
+        cell.style.width = '40px'
         row.appendChild(cell)
     }
     tbody.appendChild(row);
@@ -533,7 +533,7 @@ function createTable() {
             let inp = document.createElement('input');
             inp.autocomplete = 'off';
             inp.id = i + "" + j;
-            inp.style = 'width:55px';
+            inp.style = 'width:40px';
             //inp.value = data[i][j];
             cell.appendChild(inp);
             row.appendChild(cell)
