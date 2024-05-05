@@ -126,20 +126,20 @@ function next() {
 
 function showResult(per) {
     return Swal.fire({
-        title: "<strong>Результаты теста</strong>",
+        title: "<strong>Результаты</strong>",
         icon: "info",
         html: `
+        <div>
+            <span>Качество:</span><span>${(per)}%</span>
+        </div>
+        <div>
+            <span>Оценка:</span><span>${(ball)}</span>
+        </div>
         <div>
             <span>Ошибок всего:</span><span style="color: red;">${errorsTotal}</span>
         </div>
         <div>
             <span>Баллов всего:</span><span>${scoreTotal}</span>
-        </div>
-        <div>
-            <span>Процент выполнения:</span><span>${(per)}%</span>
-        </div>
-        <div>
-            <span>Оценка:</span><span>${(ball)}</span>
         </div>
         <div>
         <span>Продолжительность:</span><span>${(getDurationTime())}</span>
@@ -314,10 +314,12 @@ function get_tests_results() {
 
 
 function handlePasswordInput(event) {
-    const key = event.key.toLowerCase();
-
+    const eventKey=event.key;
+    const key = eventKey.toLowerCase();
     // Добавляем новую букву к строке пароля
-    password += key;
+    if (key.length==1)
+        password += key;
+    console.log(password)
 
     // Ограничиваем длину строки пароля до MAX_LENGTH
     if (password.length > MAX_LENGTH) {
