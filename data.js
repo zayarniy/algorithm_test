@@ -9,6 +9,18 @@ let tasks =
         {
             textTask: 'Проанализируйте алгоритм в виде блок-схемы и заполните таблицу трассировки при m=<span id="initM"></span>, n=<span id="initN"></span>',
             imageAlgorithm: 'algorithms/001.svg',
+            textCode:`
+            <pre>
+            m=int(input())
+            n=int(input())
+            while m!=n:
+                if m>n:
+                    m=m-n
+                else:
+                    n=n-m
+            print(m)                        
+            </pre>
+            `,
             task: function (data, m, n) {
                 //Инициализация
                 data[0][0] = 'm'
@@ -50,8 +62,9 @@ let tasks =
                 while (m == n);
                 this.task(data, m, n);
                 //console.log(r, m, n);
-                document.getElementById('imageAlgorithm').src = tasks[taskQuery[taskNumber]].imageAlgorithm
-                document.getElementById('textTask').innerHTML = tasks[taskQuery[taskNumber]].textTask;
+                document.getElementById('imageAlgorithm').src = this.imageAlgorithm
+                document.getElementById('colCodeAlgorithm').innerHTML=this.textCode;
+                document.getElementById('textTask').innerHTML = this.textTask;
                 document.getElementById('initM').textContent = m;
                 //document.getElementById('initM').style.color = color1;
                 document.getElementById('initN').textContent = n;
@@ -63,6 +76,17 @@ let tasks =
         {
             textTask: 'Проанализируйте алгоритм и заполните таблицу трассировки при m=<span id="initM"></span>, n=<span id="initN"></span>',
             imageAlgorithm: 'algorithms/002.svg',
+            textCode:`
+
+            <pre>
+            n = int(input())
+            m = int(input())
+            while m >= 6:
+                m = m - 2
+                n = n * 2
+            print(n)                      
+        </pre>
+            `,
             task: function (data, m, n) {
                 //Инициализация
                 data[0][0] = 'm'
@@ -98,8 +122,9 @@ let tasks =
                 n = getRandomInt(2, 10);// getRandomInt(2, 21) * r;
                 this.task(data, m, n);
                 //console.log(r, m, n);
-                document.getElementById('imageAlgorithm').src = tasks[taskQuery[taskNumber]].imageAlgorithm
-                document.getElementById('textTask').innerHTML = tasks[taskQuery[taskNumber]].textTask;
+                document.getElementById('imageAlgorithm').src = this.imageAlgorithm
+                document.getElementById('colCodeAlgorithm').innerHTML=this.textCode;
+                document.getElementById('textTask').innerHTML = this.textTask;
                 document.getElementById('initM').textContent = m;
                 document.getElementById('initN').textContent = n;
                 //console.log(data);
@@ -110,6 +135,20 @@ let tasks =
         {
             textTask: 'Проанализируйте алгоритм и заполните таблицу трассировки при x=<span id="initX"></span>, y=<span id="initY"></span>',
             imageAlgorithm: 'algorithms/003.svg',
+            textCode:`
+            <pre>
+            x = int(input())
+            y = int(input())
+            while x < 30:
+                if x>=y:
+                    x = x - 5
+                    y = y + 5
+                else:
+                    x = x + 10
+                    y = y - 10
+            print(x, y)                    
+            </pre>                        
+            `,
             task: function (data, x, y) {
                 //Инициализация
                 data[0][0] = 'x'
@@ -151,8 +190,9 @@ let tasks =
                 y = 35 + getRandomInt(0, 3) * 5;// getRandomInt(2, 21) * r;
                 this.task(data, x, y);
                 //console.log(r, m, n);
-                document.getElementById('imageAlgorithm').src = tasks[taskQuery[taskNumber]].imageAlgorithm
-                document.getElementById('textTask').innerHTML = tasks[taskQuery[taskNumber]].textTask;
+                document.getElementById('imageAlgorithm').src = this.imageAlgorithm
+                document.getElementById('colCodeAlgorithm').innerHTML=this.textCode;
+                document.getElementById('textTask').innerHTML = this.textTask;
                 document.getElementById('initX').textContent = x;
                 document.getElementById('initY').textContent = y;
                 //console.log(data);
@@ -162,6 +202,16 @@ let tasks =
         {
             textTask: 'Проанализируйте алгоритм и заполните таблицу трассировки при a=<span id="initA"></span>, b=<span id="initB"></span>',
             imageAlgorithm: 'algorithms/004.svg',
+            textCode:`
+            <pre>
+            a = int(input())
+            b = int(input())
+            while b != 32:
+                b = b * 2
+                a = a + 2
+            print(a)               
+            </pre>
+            `,
             task: function (data, a, b) {
                 //Инициализация
                 data[0][0] = 'a'
@@ -194,8 +244,9 @@ let tasks =
                 b = 2;// getRandomInt(2, 21) * r;
                 this.task(data, a, b);
                 //console.log(r, m, n);
-                document.getElementById('imageAlgorithm').src = tasks[taskQuery[taskNumber]].imageAlgorithm
-                document.getElementById('textTask').innerHTML = tasks[taskQuery[taskNumber]].textTask;
+                document.getElementById('imageAlgorithm').src = this.imageAlgorithm
+                document.getElementById('colCodeAlgorithm').innerHTML=this.textCode;
+                document.getElementById('textTask').innerHTML = this.textTask;
                 document.getElementById('initA').textContent = a;
                 document.getElementById('initB').textContent = b;
                 //console.log(data);
@@ -207,6 +258,16 @@ let tasks =
         {
             textTask: 'Проанализируйте алгоритм и заполните таблицу трассировки при a=<span id="initA"></span>, b=<span id="initB"></span>',
             imageAlgorithm: 'algorithms/005.svg',
+            textCode:`
+            <pre>
+            a = int(input())
+            b = int(input())
+            while b != 4:
+                b = b + 1
+                a = a * 2
+            print(a)          
+        </pre>
+            `,
             task: function (data, a, b) {
                 //Инициализация
                 data[0][0] = 'a'
@@ -239,8 +300,9 @@ let tasks =
                 b = 0;// getRandomInt(2, 21) * r;
                 this.task(data, a, b);
                 //console.log(r, m, n);
-                document.getElementById('imageAlgorithm').src = tasks[taskQuery[taskNumber]].imageAlgorithm
-                document.getElementById('textTask').innerHTML = tasks[taskQuery[taskNumber]].textTask;
+                document.getElementById('imageAlgorithm').src = this.imageAlgorithm
+                document.getElementById('colCodeAlgorithm').innerHTML=this.textCode;
+                document.getElementById('textTask').innerHTML = this.textTask;
                 document.getElementById('initA').textContent = a;
                 document.getElementById('initB').textContent = b;
                 //console.log(data);
@@ -251,6 +313,20 @@ let tasks =
         {
             textTask: 'Проанализируйте алгоритм и заполните таблицу трассировки при x=<span id="initX"></span>, y=<span id="initY"></span>',
             imageAlgorithm: 'algorithms/006.svg',
+            textCode:`
+            <pre>
+            x = int(input())
+            y = int(input())
+            while y < 16:
+                if x<=y:
+                    x = x + 5
+                    y = y - 5
+                else:
+                    x = x - 3
+                    y = y + 5
+            print(x, y)                  
+            </pre>
+            `,
             task: function (data, x, y) {
                 //Инициализация
                 data[0][0] = 'x'
@@ -292,8 +368,9 @@ let tasks =
                 y = 15;// + getRandomInt(0, 3) * 5;// getRandomInt(2, 21) * r;
                 this.task(data, x, y);
                 //console.log(r, m, n);
-                document.getElementById('imageAlgorithm').src = tasks[taskQuery[taskNumber]].imageAlgorithm
-                document.getElementById('textTask').innerHTML = tasks[taskQuery[taskNumber]].textTask;
+                document.getElementById('imageAlgorithm').src = this.imageAlgorithm
+                document.getElementById('colCodeAlgorithm').innerHTML=this.textCode;
+                document.getElementById('textTask').innerHTML = this.textTask;
                 document.getElementById('initX').textContent = x;
                 document.getElementById('initY').textContent = y;
                 //console.log(data);

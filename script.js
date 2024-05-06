@@ -35,6 +35,8 @@ function renewTask() {
         errors = 0;
         countAttempt--;
         tasks[taskQuery[taskNumber]].init();
+        document.getElementById('colImageAlgorithm').style.display = 'block';
+        document.getElementById('colCodeAlgorithm').style.display = 'none';
         infoUpdate();
         createTable();
 
@@ -62,15 +64,17 @@ function timerStart() {
 }
 
 function tick() {
+    document.getElementById('durationTime').innerHTML = getDurationTime();
+}
+
+function getDurationTime() {
     let diffInMilliseconds = new Date() - timeStart;
-
-
-
     // Преобразуем миллисекунды в часы, минуты и секунды
     let hours = String(Math.floor(diffInMilliseconds / (1000 * 60 * 60))).padStart(2, '0');
     let minutes = String(Math.floor((diffInMilliseconds % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
     let seconds = String(Math.floor((diffInMilliseconds % (1000 * 60)) / 1000)).padStart(2, '0');
-    document.getElementById('durationTime').innerHTML = `${hours}:${minutes}:${seconds}`;
+    return `${hours}:${minutes}:${seconds}`;
+
 }
 
 function finish() {
@@ -123,9 +127,15 @@ function next() {
 
 function showResult(per) {
     return Swal.fire({
-        title: "<strong>Результаты теста</strong>",
+        title: "<strong>Результаты</strong>",
         icon: "info",
         html: `
+        <div>
+            <span>Качество:</span><span>${(per)}%</span>
+        </div>
+        <div>
+            <span>Оценка:</span><span>${(ball)}</span>
+        </div>
         <div>
             <span>Ошибок всего:</span><span style="color: red;">${errorsTotal}</span>
         </div>
@@ -133,10 +143,7 @@ function showResult(per) {
             <span>Баллов всего:</span><span>${scoreTotal}</span>
         </div>
         <div>
-            <span>Процент выполнения:</span><span>${(per)}%</span>
-        </div>
-        <div>
-            <span>Оценка:</span><span>${(ball)}</span>
+        <span>Продолжительность:</span><span>${(getDurationTime())}</span>
         </div>
 
         `,
@@ -308,10 +315,12 @@ function get_tests_results() {
 
 
 function handlePasswordInput(event) {
-    const key = event.key.toLowerCase();
-
+    const eventKey = event.key;
+    const key = eventKey.toLowerCase();
     // Добавляем новую букву к строке пароля
-    password += key;
+    if (key.length == 1)
+        password += key;
+    console.log(password)
 
     // Ограничиваем длину строки пароля до MAX_LENGTH
     if (password.length > MAX_LENGTH) {
@@ -501,12 +510,12 @@ function createTable() {
     let row = document.createElement('tr');
     let cell = document.createElement('th');
     cell.textContent = '№';
-    cell.style.width = '60px'
+    cell.style.width = '40px'
     row.appendChild(cell)
     for (j = 0; j < data[0].length; j++) {
         let cell = document.createElement('th');
         cell.textContent = data[0][j]
-        cell.style.width = '60px'
+        cell.style.width = '40px'
         row.appendChild(cell)
     }
     tbody.appendChild(row);
@@ -523,7 +532,7 @@ function createTable() {
             let inp = document.createElement('input');
             inp.autocomplete = 'off';
             inp.id = i + "" + j;
-            inp.style = 'width:55px';
+            inp.style = 'width:40px';
             //inp.value = data[i][j];
             cell.appendChild(inp);
             row.appendChild(cell)
@@ -548,5 +557,19 @@ function toggleHint() {
         hintContent.style.display = 'block';
         hintToggle.textContent = 'Спрятать';
         isHintVisible = true;
+    }
+}
+}
+
+
+function switchBlock() {
+    console.log(document.getElementById('colImageAlgorithm').style.display)
+    if (document.getElementById('colImageAlgorithm').style.display == 'none') {
+        document.getElementById('colImageAlgorithm').style.display = 'block';
+        document.getElementById('colCodeAlgorithm').style.display = 'none';
+    }
+    else {
+        document.getElementById('colImageAlgorithm').style.display = 'none';
+        document.getElementById('colCodeAlgorithm').style.display = 'block';
     }
 }
