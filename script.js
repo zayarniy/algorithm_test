@@ -532,4 +532,21 @@ function createTable() {
         //let computedStyle = window.getComputedStyle(cell);
         //console.log(computedStyle)
     }
-}    
+}
+
+let isHintVisible = false;
+
+function toggleHint() {
+    const hintContent = document.querySelector('.hint-content');
+    const hintToggle = document.querySelector('.hint-toggle');
+
+    if (isHintVisible) {
+        hintContent.style.display = 'none';
+        hintToggle.textContent = 'Подсказка';
+        isHintVisible = false;
+    } else {
+        hintContent.style.display = 'block';
+        hintToggle.textContent = 'Спрятать';
+        isHintVisible = true;
+    }
+}
