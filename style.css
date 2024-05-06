@@ -80,14 +80,14 @@ body {
 .hint-container {
     position: fixed;
     top: 50%;
-    left: 0;
+    right: 0;
     transform: translateY(-50%);
 }
 
 .hint-toggle {
     background-color: #4CAF50;
     color: white;
-    padding: 2px;
+    padding: 5px;
     cursor: pointer;
     writing-mode: vertical-rl;
     #writing-mode: horizontal-tb;

@@ -9,7 +9,7 @@ let tasks =
         {
             textTask: 'Проанализируйте алгоритм в виде блок-схемы и заполните таблицу трассировки при m=<span id="initM"></span>, n=<span id="initN"></span>',
             imageAlgorithm: 'algorithms/001.svg',
-            textCode:`
+            textCode: `
             <pre>
             m=int(input())
             n=int(input())
@@ -50,7 +50,9 @@ let tasks =
                 count += 4;
                 data.outputText = 'm';
                 data.output = m;
-                scoreMax = count;
+                this.maxBalls = count;
+                this.balls = 0;
+                this.errors = 0;
             },
             init: function () {
                 data = [[]]
@@ -61,22 +63,20 @@ let tasks =
                 }
                 while (m == n);
                 this.task(data, m, n);
-                //console.log(r, m, n);
                 document.getElementById('imageAlgorithm').src = this.imageAlgorithm
-                document.getElementById('colCodeAlgorithm').innerHTML=this.textCode;
+                document.getElementById('colCodeAlgorithm').innerHTML = this.textCode;
                 document.getElementById('textTask').innerHTML = this.textTask;
                 document.getElementById('initM').textContent = m;
-                //document.getElementById('initM').style.color = color1;
                 document.getElementById('initN').textContent = n;
-                //document.getElementById('initN').style.color = color1;
-                //console.log(data);
-            }
-
+            },
+            balls: 0,
+            errors: 0,
+            maxBalls: 0
         },
         {
             textTask: 'Проанализируйте алгоритм и заполните таблицу трассировки при m=<span id="initM"></span>, n=<span id="initN"></span>',
             imageAlgorithm: 'algorithms/002.svg',
-            textCode:`
+            textCode: `
 
             <pre>
             n = int(input())
@@ -114,6 +114,9 @@ let tasks =
                 data.outputText = 'm';
                 data.output = m;
                 scoreMax = count;
+                this.maxBalls = count;
+                this.balls = 0;
+                this.errors = 0;
             },
             init: function () {
                 data = [[]]
@@ -123,19 +126,21 @@ let tasks =
                 this.task(data, m, n);
                 //console.log(r, m, n);
                 document.getElementById('imageAlgorithm').src = this.imageAlgorithm
-                document.getElementById('colCodeAlgorithm').innerHTML=this.textCode;
+                document.getElementById('colCodeAlgorithm').innerHTML = this.textCode;
                 document.getElementById('textTask').innerHTML = this.textTask;
                 document.getElementById('initM').textContent = m;
                 document.getElementById('initN').textContent = n;
                 //console.log(data);
-            }
-
+            },
+            balls: 0,
+            errors: 0,
+            maxBalls: 0
 
         },
         {
             textTask: 'Проанализируйте алгоритм и заполните таблицу трассировки при x=<span id="initX"></span>, y=<span id="initY"></span>',
             imageAlgorithm: 'algorithms/003.svg',
-            textCode:`
+            textCode: `
             <pre>
             x = int(input())
             y = int(input())
@@ -181,7 +186,9 @@ let tasks =
                 data[i][2] = x < 30 ? '+' : '-';
                 data[i][3] = '*';//x >= y ? '+' : '-';
                 count += data[i].length;
-                scoreMax = count;
+                this.maxBalls = count;
+                this.balls = 0;
+                this.errors = 0;
             },
             init: function () {
                 data = [[]]
@@ -189,20 +196,24 @@ let tasks =
                 x = 15;//getRandomInt(4, 11) * r;
                 y = 35 + getRandomInt(0, 3) * 5;// getRandomInt(2, 21) * r;
                 this.task(data, x, y);
+
                 //console.log(r, m, n);
                 document.getElementById('imageAlgorithm').src = this.imageAlgorithm
-                document.getElementById('colCodeAlgorithm').innerHTML=this.textCode;
+                document.getElementById('colCodeAlgorithm').innerHTML = this.textCode;
                 document.getElementById('textTask').innerHTML = this.textTask;
                 document.getElementById('initX').textContent = x;
                 document.getElementById('initY').textContent = y;
                 //console.log(data);
-            }
+            },
+            balls: 0,
+            errors: 0,
+            maxBalls: 0
 
         },
         {
             textTask: 'Проанализируйте алгоритм и заполните таблицу трассировки при a=<span id="initA"></span>, b=<span id="initB"></span>',
             imageAlgorithm: 'algorithms/004.svg',
-            textCode:`
+            textCode: `
             <pre>
             a = int(input())
             b = int(input())
@@ -236,6 +247,9 @@ let tasks =
                 data[i][2] = b != 32 ? '+' : '-';
                 count += data[i].length;
                 scoreMax = count;
+                this.maxBalls = count;
+                this.balls = 0;
+                this.errors = 0;
             },
             init: function () {
                 data = [[]]
@@ -245,20 +259,21 @@ let tasks =
                 this.task(data, a, b);
                 //console.log(r, m, n);
                 document.getElementById('imageAlgorithm').src = this.imageAlgorithm
-                document.getElementById('colCodeAlgorithm').innerHTML=this.textCode;
+                document.getElementById('colCodeAlgorithm').innerHTML = this.textCode;
                 document.getElementById('textTask').innerHTML = this.textTask;
                 document.getElementById('initA').textContent = a;
                 document.getElementById('initB').textContent = b;
                 //console.log(data);
-            }
-
-
+            },
+            balls: 0,
+            errors: 0,
+            maxBalls: 0
         },
 
         {
             textTask: 'Проанализируйте алгоритм и заполните таблицу трассировки при a=<span id="initA"></span>, b=<span id="initB"></span>',
             imageAlgorithm: 'algorithms/005.svg',
-            textCode:`
+            textCode: `
             <pre>
             a = int(input())
             b = int(input())
@@ -291,6 +306,9 @@ let tasks =
                 data[i][1] = b
                 data[i][2] = b != 4 ? '+' : '-';
                 count += data[i].length;
+                this.maxBalls = count;
+                this.balls = 0;
+                this.errors = 0;
                 scoreMax = count;
             },
             init: function () {
@@ -301,19 +319,21 @@ let tasks =
                 this.task(data, a, b);
                 //console.log(r, m, n);
                 document.getElementById('imageAlgorithm').src = this.imageAlgorithm
-                document.getElementById('colCodeAlgorithm').innerHTML=this.textCode;
+                document.getElementById('colCodeAlgorithm').innerHTML = this.textCode;
                 document.getElementById('textTask').innerHTML = this.textTask;
                 document.getElementById('initA').textContent = a;
                 document.getElementById('initB').textContent = b;
                 //console.log(data);
-            }
-
+            },
+            balls: 0,
+            errors: 0,
+            maxBalls: 0
 
         },
         {
             textTask: 'Проанализируйте алгоритм и заполните таблицу трассировки при x=<span id="initX"></span>, y=<span id="initY"></span>',
             imageAlgorithm: 'algorithms/006.svg',
-            textCode:`
+            textCode: `
             <pre>
             x = int(input())
             y = int(input())
@@ -359,6 +379,9 @@ let tasks =
                 data[i][2] = y < 16 ? '+' : '-';
                 data[i][3] = '*';//x <= y ? '+' : '-';
                 count += data[i].length;
+                this.maxBalls = count;
+                this.balls = 0;
+                this.errors = 0;
                 scoreMax = count;
             },
             init: function () {
@@ -369,13 +392,60 @@ let tasks =
                 this.task(data, x, y);
                 //console.log(r, m, n);
                 document.getElementById('imageAlgorithm').src = this.imageAlgorithm
-                document.getElementById('colCodeAlgorithm').innerHTML=this.textCode;
+                document.getElementById('colCodeAlgorithm').innerHTML = this.textCode;
                 document.getElementById('textTask').innerHTML = this.textTask;
                 document.getElementById('initX').textContent = x;
                 document.getElementById('initY').textContent = y;
                 //console.log(data);
-            }
-
+            },
+            balls: 0,
+            errors: 0,
+            maxBalls: 0
+        },
+        {
+            textTask: 'Проанализируйте алгоритм и заполните таблицу трассировки при a=<span id="initA"></span>',
+            imageAlgorithm: 'algorithms/007.svg',
+            textCode: `
+            <pre>
+            код не предусмотрен
+            </pre>
+            `,
+            task: function (data, a) {
+                //Инициализация
+                data[0][0] = 'a'
+                data[0][1] = 'a<95'
+                let i = 1;
+                let count = 0;
+                while (a < 95) {
+                    data.push([])
+                    data[i][0] = a;
+                    data[i][1] = a < 95 ? '+' : '-';
+                    count += data[i].length;
+                    a += 25;
+                    i++;
+                }
+                //Вывод
+                data.push([])
+                data[i][0] = a;
+                data[i][1] = a < 95 ? '+' : '-';
+                count += data[i].length;
+                this.maxBalls = count;
+                this.balls = 0;
+                this.errors = 0;
+                scoreMax = count;
+            },
+            init: function () {
+                data = [[]]
+                let a = getRandomInt(0, 10);
+                this.task(data, a);
+                document.getElementById('imageAlgorithm').src = this.imageAlgorithm
+                document.getElementById('colCodeAlgorithm').innerHTML = this.textCode;
+                document.getElementById('textTask').innerHTML = this.textTask;
+                document.getElementById('initA').textContent = a;
+            },
+            balls: 0,
+            errors: 0,
+            maxBalls: 0
         }
 
     ]
@@ -408,9 +478,8 @@ function check(showAnswers = false) {
         }
     }
     //score = (count == countGreen ? countGreen : 0);
-    score = countGreen;
-    errors += countRed;
-
+    tasks[taskQuery[taskNumber]].balls = countGreen;
+    tasks[taskQuery[taskNumber]].errors += countRed;
     infoUpdate();
 }
 

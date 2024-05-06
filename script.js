@@ -1,22 +1,15 @@
 let testName = 'TraceTable';
-let score = 0;
 let si = null;
-let scoreTotal = 0;
-let errorsTotal = 0;
 let taskNumber = 0;
-let errors = 0;
-let scoreMax = 0;
 //let currentTask = 0;
 let percents = 0;
-let scoreMaxTotal = 0;
+let ball = 0;
 let timeStart = '', timeFinish = ''
 let lastName = '', firstName = '';
-let ball = 0;
-let password = '';
 let countAttempt = 2;
+let password = '';
 const MAX_LENGTH = 6;
 const targetPassword = 'qqwwee';
-
 
 function load() {
     // Прослушиваем события нажатия клавиш
@@ -25,11 +18,27 @@ function load() {
     //initTask();
 }
 
+function getScoreTotal() {
+    return tasks.reduce((accomulator, task) => accomulator + task.balls, 0);
+}
+
+function getErrorTotal() {
+    return tasks.reduce((accomulator, task) => accomulator + task.errors, 0);
+}
+
+function getScoreMaxTotal() {
+    return tasks.reduce((accomulator, task) => accomulator + task.maxBalls, 0);
+}
+
 function calculatePercent() {
-    return parseInt((scoreTotal - (errorsTotal > scoreMaxTotal ? 0 : errorsTotal)) / (scoreMaxTotal == 0 ? 1 : scoreMaxTotal) * 100);
+    let _scoreTotal = getScoreTotal();
+    let _errorsTotal = getErrorTotal();
+    let _scoreMaxTotal = getScoreMaxTotal();
+    return parseInt(((_scoreTotal) - ((_errorsTotal) > _scoreMaxTotal ? 0 : _errorsTotal)) / ((_scoreMaxTotal) == 0 ? 1 : _scoreMaxTotal) * 100);
 }
 
 function renewTask() {
+
     if (countAttempt > 0) {
         score = 0;
         errors = 0;
@@ -82,9 +91,9 @@ function finish() {
     checkTimeFinish();
     percents = calculatePercent();
     if (percents >= 90) ball = 5;
-    if (percents >= 80 && percents < 90) ball = 4;
-    if (percents >= 65 && percents < 80) ball = 3;
-    if (percents < 65) ball = 2;
+    if (percents >= 75 && percents < 90) ball = 4;
+    if (percents >= 50 && percents < 75) ball = 3;
+    if (percents < 50) ball = 2;
     showResult(percents).then((result) => {
         if (result.isConfirmed) {
             inputText("Сохранение", `Введите свое <strong>фамилию</strong> и <strong>имя</strong>:`, "Иванов Иван").then((name) => {
@@ -111,15 +120,9 @@ function next() {
     if (taskNumber < taskQuery.length) {
         //currentTask = taskQuery[taskNumber];
         countAttempt = 3;
-        scoreTotal += score;
-        errorsTotal += errors;
-        scoreMaxTotal += scoreMax;
         renewTask();
     }
     else {
-        scoreTotal += score;
-        errorsTotal += errors;
-        scoreMaxTotal += scoreMax;
         finish();
     }
 }
@@ -137,10 +140,10 @@ function showResult(per) {
             <span>Оценка:</span><span>${(ball)}</span>
         </div>
         <div>
-            <span>Ошибок всего:</span><span style="color: red;">${errorsTotal}</span>
+            <span>Ошибок всего:</span><span style="color: red;">${getErrorTotal()}</span>
         </div>
         <div>
-            <span>Баллов всего:</span><span>${scoreTotal}</span>
+            <span>Баллов всего:</span><span>${getScoreTotal()}</span>
         </div>
         <div>
         <span>Продолжительность:</span><span>${(getDurationTime())}</span>
@@ -183,13 +186,13 @@ function inputText(title, html, inputPlaceholder) {
     });
 }
 
-function infoUpdate() {
-    document.getElementById('scores').textContent = score;
-    document.getElementById('scoresTotal').textContent = scoreTotal;
-    document.getElementById('errors').textContent = errors;
-    document.getElementById('errorsTotal').textContent = errorsTotal;
+function infoUpdate(score = 0, errors = 0, scoreMax = 0) {
+    document.getElementById('scores').textContent = tasks[taskQuery[taskNumber]].balls;
+    document.getElementById('scoresTotal').textContent = getScoreTotal();
+    document.getElementById('errors').textContent = tasks[taskQuery[taskNumber]].errors;
+    document.getElementById('errorsTotal').textContent = getErrorTotal();
     document.getElementById('taskNumber').textContent = (taskNumber + 1);
-    document.getElementById('scoreMax').textContent = scoreMax;
+    document.getElementById('scoreMax').textContent = tasks[taskQuery[taskNumber]].maxBalls;
     document.getElementById('tasksTotal').textContent = taskQuery.length;
     document.getElementById('percent').textContent = calculatePercent();
     document.getElementById('countAttempt').textContent = countAttempt;
@@ -375,10 +378,14 @@ async function startTask(element) {
     let idElement = element.id;
     switch (idElement) {
         case 'task01':
-            taskQuery = [0, 1, 2, 3, 4, 5];
+            taskQuery = [6, 1, 0, 2, 3, 4, 5];
             break;
         case 'task02':
-            taskQuery = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5];
+            taskQuery = [];
+            for (let i = 0; i < tasks.length; i++) {
+                taskQuery.push(i);
+                taskQuery.push(i);
+            }
             break;
         case 'task03':
             taskQuery = [0, 0, 0, 0, 0];
@@ -399,7 +406,7 @@ async function startTask(element) {
             taskQuery = [5, 5, 5, 5, 5];
             break;
         case 'task09':
-            taskQuery = [0, 0, 0];
+            taskQuery = [6, 1, 3];
             break;
         case 'task10':
             taskQuery = [1, 1, 1];
@@ -430,14 +437,13 @@ async function startTask(element) {
             }
             taskQuery = [];
             for (let i = 0; i < count; i++)
-                taskQuery.push(getRandomInt(1, 5));
+                taskQuery.push(getRandomInt(0, tasks.length - 1));
             console.log(taskQuery);
             break;
         case 'task16':
             let result = await inputText('Ввод заданий', 'Введите задания с номерами от 0 до 5 через запятую<br>Например:0,0,1,2,3,5', '0,1,2,3,4,5');
             if (result.isConfirmed) {
-
-                console.log(result)
+                //console.log(result)
                 taskQuery = result.value.split(',').map(str => parseInt(str))
                 if (!taskQuery.every(value => typeof value == 'number' && value < 6 && value >= 0)) return;
                 console.log(taskQuery);
@@ -559,7 +565,7 @@ function toggleHint() {
         isHintVisible = true;
     }
 }
-}
+
 
 
 function switchBlock() {
