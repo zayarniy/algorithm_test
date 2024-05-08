@@ -414,7 +414,7 @@ let tasks =
                 //Инициализация
                 data[0][0] = 'a'
                 data[0][1] = 'a<95'
-                let i = 1;
+                let i = 1;                
                 let count = 0;
                 while (a < 95) {
                     data.push([])
@@ -424,7 +424,7 @@ let tasks =
                     a += 25;
                     i++;
                 }
-                //Вывод
+                //Вывод                
                 data.push([])
                 data[i][0] = a;
                 data[i][1] = a < 95 ? '+' : '-';
@@ -432,6 +432,7 @@ let tasks =
                 this.maxBalls = count;
                 this.balls = 0;
                 this.errors = 0;
+                data[1][1]= '*';
                 scoreMax = count;
             },
             init: function () {
