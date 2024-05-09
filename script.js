@@ -220,14 +220,12 @@ function sendJSONToDB() {
         firstName: firstName,
         startTime: timeStart,
         finishTime: timeFinish,
-        ball: String(ball),
-        errors: String(getErrorTotal()), //String(errorsTotal),
-        scoreMaxTotal: String(getScoreTotal()), //String(scoreMaxTotal),
-        percent: String(percents),
+        ball: ball,
+        errors: getErrorTotal(), 
+        scoreMaxTotal: getScoreTotal(), 
+        percent: percents,
         testName: testName
     };
-    //console.log(infoResult);
-    //console.log(JSON.stringify(infoResult))
     // отправляем данные на сервер с помощью fetch
     fetch("https://inform.xn--80ahlrjqm6azc.xn--p1ai/algorithm_test/php/db_insert.php",
         {
@@ -279,15 +277,23 @@ function get_tests_results() {
             // Создаем таблицу для вывода данных
             const table = document.createElement('table');
             table.classList.add('table');
+            table.id='tableResults'
             const thead = document.createElement('thead');
             const tbody = document.createElement('tbody');
 
             // Создаем заголовки таблицы
             const headers = Object.keys(data[0]);
             const headerRow = document.createElement('tr');
+            let i=0;
             headers.forEach(header => {
                 const th = document.createElement('th');
                 th.textContent = header;
+                
+                th.addEventListener('click', () => {
+                    sortByColumn(th);
+                });
+            
+                th.id=(i++)+'colTableResults';
                 headerRow.appendChild(th);
             });
             thead.appendChild(headerRow);
@@ -306,10 +312,10 @@ function get_tests_results() {
             table.appendChild(tbody);
 
             // Выводим таблицу в блок div с id 'tableResults'
-            const resultsDiv = document.getElementById('tableResults');
+            const resultsDiv = document.getElementById('divTableResults');
             resultsDiv.innerHTML = '';
             resultsDiv.appendChild(table);
-            document.getElementById('tableResults').style.display = 'block';
+            document.getElementById('divResults').style.display = 'block';
         })
         .catch(error => {
             console.error('Ошибка при получении данных из базы данных:', error);
@@ -344,7 +350,8 @@ function executeFunction() {
 }
 
 function hideTableResults() {
-    document.getElementById('tableResults').style.display = 'none';
+    document.getElementById('divResults').style.display = 'none';
+    //sortTable(document.getElementById('tableResults'),1);
 }
 
 
@@ -579,3 +586,33 @@ function switchBlock() {
         document.getElementById('colCodeAlgorithm').style.display = 'block';
     }
 }
+
+function sortTableByColumn(table, column) {
+    const rows = Array.from(table.rows).slice(1); // Получаем все строки таблицы, кроме заголовка
+    const headerRow = table.rows[0].cells[column].textContent; // Получаем текст заголовка столбца
+    const isNumber = /^[\d\.]+$/.test(headerRow); // Проверяем, является ли столбец числовым
+    
+    rows.sort((a, b) => {
+      const aValue = a.cells[column].textContent.trim();
+      const bValue = b.cells[column].textContent.trim();
+        console.log(aValue,bValue)
+      if (isNumber) {
+        return parseFloat(aValue) - parseFloat(bValue);
+      } else {
+        return aValue.localeCompare(bValue);
+      }
+    });
+  
+    rows.forEach((row) => table.tBodies[0].appendChild(row)); // Перестраиваем таблицу с отсортированными строками
+  }
+  
+  function sortByColumn(th)
+  {
+    //let nColumn=parseInt(column.id);
+    console.log(th)
+    const table = th.parentElement.parentElement.parentElement;
+    console.log(table)
+    const nColumn = Array.from(th.parentElement.cells).indexOf(th);
+    console.log(nColumn)
+    sortTableByColumn(table,nColumn);
+  }
