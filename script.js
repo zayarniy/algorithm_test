@@ -221,8 +221,8 @@ function sendJSONToDB() {
         startTime: timeStart,
         finishTime: timeFinish,
         ball: String(ball),
-        errors: String(errorsTotal),
-        scoreMaxTotal: String(scoreMaxTotal),
+        errors: String(getErrorTotal()), //String(errorsTotal),
+        scoreMaxTotal: String(getScoreTotal()), //String(scoreMaxTotal),
         percent: String(percents),
         testName: testName
     };
