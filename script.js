@@ -515,7 +515,7 @@ function createTable() {
 
     let row = document.createElement('tr');
     let cell = document.createElement('th');
-    cell.textContent = '№';
+    cell.textContent = 'Шаг №';
     cell.style.width = '40px'
     row.appendChild(cell)
     for (j = 0; j < data[0].length; j++) {
@@ -535,6 +535,11 @@ function createTable() {
 
         for (j = 0; j < data[i].length; j++) {
             let cell = document.createElement('td');
+            cell.addEventListener('keydown', (event) => {
+                if (event.key == 'Enter')
+                    check();
+            });
+
             let inp = document.createElement('input');
             inp.autocomplete = 'off';
             inp.id = i + "" + j;

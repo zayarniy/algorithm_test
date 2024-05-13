@@ -424,6 +424,7 @@ let tasks =
                     a += 25;
                     i++;
                 }
+                data[1][1] = '*';
                 //Вывод
                 data.push([])
                 data[i][0] = a;
