@@ -482,6 +482,26 @@ function check(showAnswers = false) {
     //score = (count == countGreen ? countGreen : 0);
     tasks[taskQuery[taskNumber]].balls = countGreen;
     tasks[taskQuery[taskNumber]].errors += countRed;
+    //simulateTabKeyPress();
     infoUpdate();
 }
 
+
+function simulateTabKeyPress() {
+    // Создаем событие клавиатуры
+    const keyboardEvent = new KeyboardEvent('keydown', {
+      bubbles: true,
+      cancelable: true,
+      key: 'Tab',
+      keyCode: 9, // Код клавиши Tab
+      code: 'Tab',
+      which: 9,
+      shiftKey: false // Установите true, если хотите эмулировать Shift+Tab
+    });
+  
+    // Отправляем событие на документ
+    document.dispatchEvent(keyboardEvent);
+  }
+  
+
+  

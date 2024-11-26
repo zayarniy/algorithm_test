@@ -6,8 +6,8 @@ let percents = 0;
 let ball = 0;
 let timeStart = '', timeFinish = ''
 let lastName = '', firstName = '';
-const maxAttempts=2;
-let countAttempt = maxAttempts-1;
+const maxAttempts = 2;
+let countAttempt = maxAttempts - 1;
 let password = '';
 const MAX_LENGTH = 6;
 const targetPassword = 'qqwwee';
@@ -222,8 +222,8 @@ function sendJSONToDB() {
         startTime: timeStart,
         finishTime: timeFinish,
         ball: ball,
-        errors: getErrorTotal(), 
-        scoreMaxTotal: getScoreTotal(), 
+        errors: getErrorTotal(),
+        scoreMaxTotal: getScoreTotal(),
         percent: percents,
         testName: testName
     };
@@ -278,23 +278,23 @@ function get_tests_results() {
             // Создаем таблицу для вывода данных
             const table = document.createElement('table');
             table.classList.add('table');
-            table.id='tableResults'
+            table.id = 'tableResults'
             const thead = document.createElement('thead');
             const tbody = document.createElement('tbody');
 
             // Создаем заголовки таблицы
             const headers = Object.keys(data[0]);
             const headerRow = document.createElement('tr');
-            let i=0;
+            let i = 0;
             headers.forEach(header => {
                 const th = document.createElement('th');
                 th.textContent = header;
-                
+
                 th.addEventListener('click', () => {
                     sortByColumn(th);
                 });
-            
-                th.id=(i++)+'colTableResults';
+
+                th.id = (i++) + 'colTableResults';
                 headerRow.appendChild(th);
             });
             thead.appendChild(headerRow);
@@ -544,8 +544,28 @@ function createTable() {
         for (j = 0; j < data[i].length; j++) {
             let cell = document.createElement('td');
             cell.addEventListener('keydown', (event) => {
-                if (event.key == 'Enter')
+                if (event.key == 'Enter') {
                     check();
+                    // Находим текущий активный элемент
+                    const activeElement = document.activeElement;
+
+                    // Находим все фокусируемые элементы на странице
+                    const focusableElements = 'a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])';
+                    const elements = Array.from(document.querySelectorAll(focusableElements));
+
+                    // Находим индекс текущего активного элемента
+                    const currentIndex = elements.indexOf(activeElement);
+
+                    // Если текущий элемент найден, переходим к следующему элементу
+                    if (currentIndex !== -1) {
+                        const nextIndex = (currentIndex + 1) % elements.length;
+                        elements[nextIndex].focus();
+                    }
+
+                    // Предотвращаем стандартное поведение клавиши Enter
+                    event.preventDefault();
+                }
+
             });
 
             let inp = document.createElement('input');
@@ -597,28 +617,27 @@ function sortTableByColumn(table, column) {
     const rows = Array.from(table.rows).slice(1); // Получаем все строки таблицы, кроме заголовка
     const headerRow = table.rows[0].cells[column].textContent; // Получаем текст заголовка столбца
     const isNumber = /^[\d\.]+$/.test(headerRow); // Проверяем, является ли столбец числовым
-    
+
     rows.sort((a, b) => {
-      const aValue = a.cells[column].textContent.trim();
-      const bValue = b.cells[column].textContent.trim();
-        console.log(aValue,bValue)
-      if (isNumber) {
-        return parseFloat(aValue) - parseFloat(bValue);
-      } else {
-        return aValue.localeCompare(bValue);
-      }
+        const aValue = a.cells[column].textContent.trim();
+        const bValue = b.cells[column].textContent.trim();
+        console.log(aValue, bValue)
+        if (isNumber) {
+            return parseFloat(aValue) - parseFloat(bValue);
+        } else {
+            return aValue.localeCompare(bValue);
+        }
     });
-  
+
     rows.forEach((row) => table.tBodies[0].appendChild(row)); // Перестраиваем таблицу с отсортированными строками
-  }
-  
-  function sortByColumn(th)
-  {
+}
+
+function sortByColumn(th) {
     //let nColumn=parseInt(column.id);
     console.log(th)
     const table = th.parentElement.parentElement.parentElement;
     console.log(table)
     const nColumn = Array.from(th.parentElement.cells).indexOf(th);
     console.log(nColumn)
-    sortTableByColumn(table,nColumn);
-  }
+    sortTableByColumn(table, nColumn);
+}
