@@ -6,7 +6,8 @@ let percents = 0;
 let ball = 0;
 let timeStart = '', timeFinish = ''
 let lastName = '', firstName = '';
-let countAttempt = 2;
+const maxAttempts=2;
+let countAttempt = maxAttempts-1;
 let password = '';
 const MAX_LENGTH = 6;
 const targetPassword = 'qqwwee';
@@ -51,7 +52,7 @@ function renewTask() {
 
     }
     else {
-        showMessage('Внимание', 'Попытки закончились!', 'warning', false);
+        showMessage('Попытки закончились!', `Мы можете выполнить задание не более ${maxAttempts} раз`, 'warning', false);
     }
 }
 
@@ -119,7 +120,7 @@ function next() {
     ++taskNumber;
     if (taskNumber < taskQuery.length) {
         //currentTask = taskQuery[taskNumber];
-        countAttempt = 3;
+        countAttempt = maxAttempts;
         renewTask();
     }
     else {
@@ -413,7 +414,7 @@ async function startTask(element) {
             taskQuery = [5, 5, 5, 5, 5];
             break;
         case 'task09':
-            taskQuery = [6, 1, 3];
+            taskQuery = [1, 6];
             break;
         case 'task10':
             taskQuery = [1, 1, 1];

@@ -41,9 +41,9 @@
                 </thead>
                 <tr>
                     <td></td>
-                    <td>Стандартное. 7 заданий</td>
+                    <td>Основное задание. 7 заданий</td>
                     <td>7</td>
-                    <td><button class="btn btn-primary" id="task01" onclick="startTask(this)">Пуск</button></td>
+                    <td><button class="btn btn-primary" id="task01" onclick="startTask(this)">Начать</button></td>
                 </tr>
                 <tr>
                     <td></td>
@@ -59,13 +59,13 @@
                             <option value="10">10</option>
                         </select>
                     </td>
-                    <td><button class="btn btn-primary" id="task15" onclick="startTask(this)">Пуск</button></td>
+                    <td><button class="btn btn-primary" id="task15" onclick="startTask(this)">Начать</button></td>
                 </tr>
                 <tr>
                     <td></td>
                     <td>Ввести задания</td>
                     <td>Выбор</td>
-                    <td><button class="btn btn-primary" id="task16" onclick="startTask(this)">Пуск</button></td>
+                    <td><button class="btn btn-primary" id="task16" onclick="startTask(this)">Начать</button></td>
                 </tr>
                 <thead class="table-primary  align-middle">
                     <tr>
@@ -76,7 +76,7 @@
                     <td></td>
                     <td>14 заданий. Все задания по два раза</td>
                     <td>14</td>
-                    <td><button class="btn btn-primary" id="task02" onclick="startTask(this)">Пуск</button></td>
+                    <td><button class="btn btn-primary" id="task02" onclick="startTask(this)">Начать</button></td>
                 </tr>
 
                 <thead class="table-primary  align-middle">
@@ -123,9 +123,9 @@
                 </tr>-->
                 <tr>
                     <td></td>
-                    <td>Три простых задания</td>
-                    <td>3</td>
-                    <td><button class="btn btn-primary" id="task09" onclick="startTask(this)">Пуск</button></td>
+                    <td>Два простых задания (для тренировки)</td>
+                    <td>2</td>
+                    <td><button class="btn btn-primary" id="task09" onclick="startTask(this)">Начать</button></td>
                 </tr>
                 <!--
                 <tr>
@@ -164,7 +164,7 @@
         </div>
         <div id="mainView" style="display: none;">
             <div class="row lh-1 text-center align-middle" style="color:black">
-                <table class="table text-center caption-top thead-light table-stripedg">
+                <table class="table text-center caption-top thead-light table-striped">
                     <tr>
                         <td class="infoLabel">Задание:</td>
                         <td class="infoLabel">Баллов:</td>
@@ -203,17 +203,6 @@
                     </p>
                 </div>
             </div>
-            <div class="row">
-                <div class="col">
-                    <button id="btnCheck" style="visibility:inherit;background-color: #0D6EFD;" class="btn  my_btn"
-                        onclick="check()">Проверить</button>
-                    <div style="display: inline-block;width: 15px;height: 15px;background-color:#0D6EFD;"></div> <strong
-                        style="color:#0D6EFD">Верно</strong>
-                    <div style="display: inline-block;width: 15px;height: 15px;background-color:#FFCB00;"></div><strong
-                        style="color: #FFCB00;">Неверно</strong>
-                    <div style="margin-top: 10px; float: right; color: #0D6EFD;" id="durationTime"></div>
-                </div>
-            </div>
 
             <div class="row">
                 <div class="col-md-4">
@@ -221,10 +210,22 @@
                         class="table text-center caption-bottom thead-light table-striped" id="traceTable">
 
                     </table>
+                    <div class="row">
+                        <div class="col">
+                            <button id="btnCheck" style="visibility:inherit;background-color: #0D6EFD;"
+                                class="btn  my_btn" onclick="check()">Проверить</button>
+                            <div style="display: inline-block;width: 15px;height: 15px;background-color:#0D6EFD;"></div>
+                            <strong style="color:#0D6EFD">Верно</strong>
+                            <div style="display: inline-block;width: 15px;height: 15px;background-color:#FFCB00;"></div>
+                            <strong style="color: #FFCB00;">Неверно</strong>
+                            <div style="margin-top: 10px; float: right; color: #0D6EFD;" id="durationTime"></div>
+                        </div>
+                    </div>
+
                     <button id='btnClearTable' class="btn my_btn" style="visibility:inherit;background-color: #FFCB00;"
                         onclick="clearTable()">Очистить</button>
                     <button id="btnCheck" style="visibility:inherit;background-color: #FFCB00;" class="btn my_btn"
-                        onclick="renewTask()">Еще раз (<span id='countAttempt'></span>)</button>
+                        onclick="renewTask()">С начала (<span id='countAttempt'></span>)</button>
 
                 </div>
                 <div class="col-md-8" onclick="switchBlock()" id="colImageAlgorithm">
@@ -253,12 +254,39 @@
             </div>
         </div>
         <div class="row">
-            <div id="divResults" style="display: block;">
-            <div  id="divTableResults">
+            <div id="divResults" class="col" style="display: none;">
+                <div id="divTableResults">
+                </div>
+                <button onclick="hideTableResults()" class="btn btn-primary">Спрятать</button>
             </div>
-            <button onclick="hideTableResults()">Спрятать</button></div>
         </div>
+        <div class="row">
+            <div class="col">
+                <details>
+                    <summary>
+                        <h4>Инструкция</h4>
+                    </summary>
+                    <div style="text-align: justify;">
+                        &nbsp;&nbsp;&nbsp;&nbsp; На этой странице вы можете потренироваться в анализе блок-схем.
+                        Ваша задача проанализировать блок-схему и правильно заполнить таблицу трассировки. Рекомендуется
+                        после ввода каждого значения
+                        в таблицу трассировки нажимать кнопку "Проверить" или клавишу Enter. За каждое правильно
+                        введеное значение начисляется балл.
+                        Если вы допускаете ошибку - это сказывается на итогом балле.<br>
+                        Вы можете выполнить каждое задание дважды. Для этого нажмите кнопку "С начала(1)". В этом случае
+                        счетчик ошибок для текущей задачи обнуляется.
+                        Воспользуйтесь вкладкой "Подсказка" в которой есть объяснение условий и критерий
+                        выставления оценки. <br> Перед выполнением основного задания рекомендуется выбрать "два простых задания" для тренировки.
+                    </div>
+                    <figure>
+                        <img class="figure-img img-fluid rounded" src="instruction.png" />
+                        <figcaption class="figure-caption text-center">Пример</figcaption>
+                    </figure>
+                </details>
+            </div>
         </div>
+    </div>
+    </div>
     </div>
     <div class="hint-container">
         <div class="hint-toggle" onclick="toggleHint()">Подсказка</div>
