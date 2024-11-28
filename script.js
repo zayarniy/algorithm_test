@@ -87,14 +87,20 @@ function getDurationTime() {
 
 }
 
-function finish() {
-    clearInterval(si);
-    checkTimeFinish();
+function getGrade()
+{
     percents = calculatePercent();
     if (percents >= 90) ball = 5;
     if (percents >= 75 && percents < 90) ball = 4;
     if (percents >= 50 && percents < 75) ball = 3;
     if (percents < 50) ball = 2;
+    document.getElementById('grade').innerHTML=ball;
+}
+
+function finish() {
+    clearInterval(si);
+    checkTimeFinish();
+    getGrade();
     showResult(percents).then((result) => {
         if (result.isConfirmed) {
             inputText("Сохранение", `Введите свое <strong>фамилию</strong> и <strong>имя</strong>:`, "Иванов Иван").then((name) => {
@@ -122,6 +128,7 @@ function next() {
         //currentTask = taskQuery[taskNumber];
         countAttempt = maxAttempts;
         renewTask();
+        getGrade();
     }
     else {
         finish();
@@ -449,7 +456,7 @@ async function startTask(element) {
             console.log(taskQuery);
             break;
         case 'task16':
-            let result = await inputText('Ввод заданий', 'Введите задания с номерами от 0 до 5 через запятую<br>Например:0,0,1,2,3,5', '0,1,2,3,4,5');
+            let result = await inputText('Ввод заданий', `Введите задания с номерами от 0 до ${tasks.length-1} через запятую<br>Например:0,0,1,2,3,5`, '0,1,2,3,4,5');
             if (result.isConfirmed) {
                 //console.log(result)
                 taskQuery = result.value.split(',').map(str => parseInt(str))
@@ -546,6 +553,7 @@ function createTable() {
             cell.addEventListener('keydown', (event) => {
                 if (event.key == 'Enter') {
                     check();
+                    getGrade();
                     // Находим текущий активный элемент
                     const activeElement = document.activeElement;
 
